@@ -30,3 +30,6 @@
 *.exe
 *.out
 *.app
+/bank-man.e72b37cc/x64/Debug
+/.vs/bank-management-system
+/x64/Debug
