@@ -127,7 +127,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="BankManager.cpp" />
+    <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Account.cpp" />
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="Transaction.cpp" />
+    <ClCompile Include="Transfer.cpp" />
+    <ClCompile Include="Withdraw.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="BankManager.h" />
+    <ClInclude Include="Database.h" />
+    <ClInclude Include="Person.h" />
+    <ClInclude Include="Account.h" />
+    <ClInclude Include="Transaction.h" />
+    <ClInclude Include="Transfer.h" />
+    <ClInclude Include="Withdraw.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
