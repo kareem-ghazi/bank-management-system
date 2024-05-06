@@ -10,9 +10,19 @@ using namespace std;
 
 int main()
 {
-    BankManager p1;
-    p1.setvalue();
+	while (true)
+	{
+		int choice;
+		cin >> choice;
 
-    cout << "Result: " << p1.result() << endl;
+		switch (choice)
+		{
+		case 1:
+		case 2:
+		case 3:
+		default:
+			break;
+		}
+	}
     return 0;
 }

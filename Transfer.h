@@ -2,6 +2,7 @@
 #define TRANSFER_H
 
 #include <iostream>
+#include "Account.h"
 #include "Transaction.h"
 
 using namespace std;
@@ -9,10 +10,11 @@ using namespace std;
 class Transfer : public Transaction
 {
 private:
-    double balance_B;
-
+    Account accountFrom;
+    Account accountTo;
+    
 public:
-    void main_menu();
+    
 };
 
 #endif

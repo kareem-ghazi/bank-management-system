@@ -1,22 +1,31 @@
 #ifndef BANKMANAGER_H
 #define BANKMANAGER_H
 
+#include "BankManager.h"
 #include <iostream>
 
 using namespace std;
 
+// converts currency
+// accesses accounts (including transactions for each one)
+// adds accounts & removes accounts
+// manages database
+
+// FOR FARIS: Transfer from account to account
+// passing object inside parameter
 class BankManager
 {
 private:
-    int num;
-    int currency;
-    double Dollar, Riyal, Euro, Dinar, Pound;
+	//Database database;
+	int num;
+	int currency;
+	double Dollar, Riyal, Euro, Dinar, Pound;
 
 public:
-    BankManager();
+	BankManager();
 
-    void setvalue();
-    double result();
+	void setvalue();
+	double result();
 };
 
 #endif

@@ -1,15 +1,22 @@
 #ifndef TRANSACTION_H
 #define TRANSACTION_H
 
-class Transaction
+#include <iostream>
+
+using namespace std;
+
+class Transaction // HAS BEEN EDITED (BOTH .H AND .CPP)
 {
 private:
 
 protected:
-	double balance = 100;
+	string date;
+	double amount;
 
 public:
-
+	string getDate() const;
+	void setDate(string date);
+	double getAmount() const;
 };
 
 #endif

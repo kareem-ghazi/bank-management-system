@@ -4,22 +4,28 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <vector>
+#include "Account.h"
+#include "Person.h"
 
 using namespace std;
 
 class Database
 {
 private:
-	fstream dataMgt;
-	fstream dataMgtc;
-	string reader[20];
-	string readerc[20]; //int
+	vector<Account> accounts;
+	vector<Person> people;
+
+	ifstream inputFile;
+	ofstream outputFile;
 
 public:
-	bool is16Digts(long long num1);
-	void addAccount();
-	void readAccount();
-	void print(int ch);
+	Database();
+	~Database();
+
+	void addEntry();
+	void deleteEntry();
+	void load();
 };
 
 #endif

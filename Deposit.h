@@ -1,16 +1,18 @@
-#ifndef WITHDRAW_H
-#define WITHDRAW_H
+#ifndef DEPOSIT_H
+#define DEPOSIT_H
 
+#include <iostream>
 #include "Transaction.h"
 #include "Account.h"
-#include <cassert>
 
-class Withdraw : public Transaction // HAS BEEN EDITED (BOTH .H AND .CPP)
+class Deposit : public Transaction
 {
 private:
 	Account account;
 
 public:
+	Deposit(Account account);
+
 	Account getAccount() const;
 	void setAccount(Account account);
 

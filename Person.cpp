@@ -1,21 +1,59 @@
 #include "Person.h"
 
-Person::Person(string name, int id, string address, int age, long long accountNumber)
+Person::Person()
+{
+
+}
+
+Person::Person(string name, string address, int age)
 {
 	this->name = name;
-	this->id = id;
 	this->address = address;
 	this->age = age;
-	this->accountNumber = accountNumber;
+}
+
+string Person::getName() const
+{
+	return this->name;
+}
+
+void Person::setName(string name)
+{
+	this->name = name;
+}
+
+string Person::getAddress() const
+{
+	return this->address;
+}
+
+void Person::setAddress(string address)
+{
+	this->address = address;
+}
+
+int Person::getAge() const
+{
+	return this->age;
+}
+
+void Person::setAge(int age)
+{
+	if (age >= 18)
+	{
+		this->age = age;
+	}
+	else {
+		cout << "Error: Invalid age. Must be 18 at least to be registered in the bank." << endl;
+		assert(false);
+	}
 }
 
 void Person::printInfo() const
 {
 	cout << "Name: " << name << endl;
-	cout << "ID: " << id << endl;
 	cout << "Address: " << address << endl;
 	cout << "Age: " << age << endl;
-	cout << "Account Number: " << accountNumber << endl;
 }
 
 

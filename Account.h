@@ -1,20 +1,25 @@
 #ifndef ACCOUNT_H
 #define ACCOUNT_H
 
+#include "Person.h"
 #include <iostream>
 
 using namespace std;
 
-class Account
-{
+class Account {
 private:
+	Person owner;
+	long long accountNumber;
 	double balance;
 
-public:
-	Account(double initialBalance);
+	long long generateAccountNumber();
 
-	void deposit(double amount);
-	void withdraw(double amount);
+public:
+	Account();
+	Account(Person owner);
+
+	Person getOwner() const;
+	void setOwner(Person owner);
 	double getBalance() const;
 };
 

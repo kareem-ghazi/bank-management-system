@@ -1,34 +1,57 @@
 #include "Account.h"
 
-Account::Account(double initialBalance) : balance(initialBalance)
+Account::Account()
 {
 
+}
+
+Account::Account(Person owner)
+{
+	this->owner = owner;
+	this->balance = 0;
+	this->accountNumber = generateAccountNumber();
+}
+
+Person Account::getOwner() const
+{
+	return this->owner;
+}
+
+void Account::setOwner(Person owner)
+{
+	this->owner = owner;
 }
 
 double Account::getBalance() const {
 	return balance;
 }
 
-void Account::deposit(double amount)
+// WRITE CODE FOR THIS
+long long Account::generateAccountNumber()
 {
-	if (amount > 0) {
-		balance += amount;
-		cout << "Deposit Successful. Current Balance: $" << balance << endl;
-	}
-	else {
-		cout << "Error: Invalid Deposit Amount." << endl;
-	}
+	return 0;
 }
 
-void Account::withdraw(double amount) {
-	if (amount >= 0 && amount <= balance) {
-		balance -= amount;
-		cout << "Withdrawal Successful. Current Balance:" << balance << "\n";
-	}
-	else {
-		cout << "Wrong Withdrawal Amount / Insufficient Funds." << endl;
-	}
-}
+//void Account::deposit(double amount)
+//{
+//	if (amount > 0) {
+//		balance += amount;
+//		cout << "Deposit Successful. Current Balance: $" << balance << endl;
+//	}
+//	else {
+//		cout << "Error: Invalid Deposit Amount." << endl;
+//	}
+//}
+//
+//void Account::withdraw(double amount) {
+//	if (amount >= 0 && amount <= balance) {
+//		balance -= amount;
+//		cout << "Withdrawal Successful. Current Balance:" << balance << "\n";
+//	}
+//	else {
+//		cout << "Wrong Withdrawal Amount / Insufficient Funds." << endl;
+//	}
+//}
 
 
 

@@ -129,6 +129,8 @@
   <ItemGroup>
     <ClCompile Include="BankManager.cpp" />
     <ClCompile Include="Database.cpp" />
+    <ClCompile Include="Deposit.cpp" />
+    <ClCompile Include="Invoice.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="main.cpp" />
@@ -139,6 +141,8 @@
   <ItemGroup>
     <ClInclude Include="BankManager.h" />
     <ClInclude Include="Database.h" />
+    <ClInclude Include="Deposit.h" />
+    <ClInclude Include="Invoice.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Account.h" />
     <ClInclude Include="Transaction.h" />

@@ -11,11 +11,30 @@ BankManager::BankManager()
 
 void BankManager::setvalue()
 {
-	cout << "Enter the number in Egyptian pounds :" << endl;
-	cin >> num;
-	cout << "Enter the currency :" << endl;
-	cout << "Dollar=1 - Euro=2 - Riyal=3 - Kuwaiti Dinar=4 - Pound=5" << endl;
-	cin >> currency;
+	int temp = 0;
+	do
+	{
+
+		cout << "Enter the number in Egyptian pounds :" << endl;
+
+		cin >> num;
+		if (num <= 0)
+		{
+			cout << "invaled number\n";
+			temp++;
+		}
+		else
+		{
+			cout << "Enter the currency :" << endl;
+			cout << "[1] Dollar - [2] Euro - [3] Riyal - [4] Kuwaiti dinar - [5] Pound\n";
+			cin >> currency;
+			temp = 0;
+
+		}
+
+
+	} while (temp);
+
 }
 
 double BankManager::result()
