@@ -17,9 +17,11 @@ private:
 public:
 	Account();
 	Account(Person owner);
+	Account(Person owner, long long accountNumber, double balance);
 
 	Person getOwner() const;
 	void setOwner(Person owner);
+	long long getAccountNumber() const;
 	double getBalance() const;
 };
 

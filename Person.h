@@ -1,28 +1,28 @@
 #ifndef PERSON_H
 #define PERSON_H
 
-#include "Account.h"
 #include <iostream>
 #include <string>
 #include <cassert>
 
 using namespace std;
 
-class Person { // HAS BEEN EDITTED (BOTH .H & .CPP)
+class Person {
 private:
-	//Account accounts[3];
 	string name;
 	string address;
+	string password;
 	int age;
 
 public:
 	Person();
-	Person(string name, string address, int age);
+	Person(string name, string address, string password, int age);
 	
 	string getName() const;
 	void setName(string name);
 	string getAddress() const;
 	void setAddress(string address);
+	string getPassword() const;
 	int getAge() const;
 	void setAge(int age);
 

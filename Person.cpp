@@ -5,10 +5,11 @@ Person::Person()
 
 }
 
-Person::Person(string name, string address, int age)
+Person::Person(string name, string address, string password, int age)
 {
 	this->name = name;
 	this->address = address;
+	this->password = password;
 	this->age = age;
 }
 
@@ -30,6 +31,11 @@ string Person::getAddress() const
 void Person::setAddress(string address)
 {
 	this->address = address;
+}
+
+string Person::getPassword() const
+{
+	return this->password;
 }
 
 int Person::getAge() const

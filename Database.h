@@ -23,8 +23,8 @@ public:
 	Database();
 	~Database();
 
-	void addEntry();
-	void deleteEntry();
+	void addEntry(Account account);
+	void deleteEntry(Account account);
 	void load();
 };
 

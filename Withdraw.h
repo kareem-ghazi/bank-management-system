@@ -5,7 +5,7 @@
 #include "Account.h"
 #include <cassert>
 
-class Withdraw : public Transaction // HAS BEEN EDITED (BOTH .H AND .CPP)
+class Withdraw : public Transaction
 {
 private:
 	Account account;

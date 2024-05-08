@@ -1,6 +1,7 @@
 #ifndef BANKMANAGER_H
 #define BANKMANAGER_H
 
+#include "Database.h"
 #include "BankManager.h"
 #include <iostream>
 
@@ -16,7 +17,7 @@ using namespace std;
 class BankManager
 {
 private:
-	//Database database;
+	Database database;
 	int num;
 	int currency;
 	double Dollar, Riyal, Euro, Dinar, Pound;

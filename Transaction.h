@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class Transaction // HAS BEEN EDITED (BOTH .H AND .CPP)
+class Transaction
 {
 private:
 

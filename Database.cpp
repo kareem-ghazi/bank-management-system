@@ -2,8 +2,8 @@
 
 Database::Database()
 {
-	this->inputFile.open("data.txt");
-	this->outputFile.open("data.txt");
+	this->inputFile.open("data.txt", ios::in);
+	this->outputFile.open("data.txt", ios::app);
 }
 
 Database::~Database()
@@ -12,28 +12,210 @@ Database::~Database()
 	this->outputFile.close();
 }
 
-void Database::addEntry()
+void Database::addEntry(Account account)
 {
-	string name = "medhat";
-	int age = 69;
-	int cardNumber = 38424;
+	accounts.push_back(account);
+	outputFile << account.getOwner().getName() << ","
+		<< account.getOwner().getAddress() << ","
+		<< account.getOwner().getPassword() << ","
+		<< account.getOwner().getAge() << ","
+		<< account.getAccountNumber() << ","
+		<< account.getBalance() << endl;
+
+	/*for (int i = 0; i < accounts.size(); i++)
+	{
+		outputFile << accounts[i].getOwner().getName() << ","
+			<< accounts[i].getOwner().getAddress() << ","
+			<< accounts[i].getOwner().getPassword() << ","
+			<< accounts[i].getOwner().getAge() << ","
+			<< accounts[i].getAccountNumber() << ","
+			<< accounts[i].getBalance() << endl;
+	}*/
 
 	//accounts.push_back();
-
-	outputFile << name << "," << age << "," << cardNumber << endl;
 }
 
-void Database::deleteEntry()
+void Database::deleteEntry(Account account)
 {
 
 }
 
 void Database::load()
 {
+	string line;
 
+	while (getline(inputFile, line))
+	{
+		if (line.empty())
+		{
+			continue;
+		}
+
+		string name;
+		string address;
+		string password;
+		int age;
+
+		// idea: links line number to account number
+		// idea: pointers to vectors
+		// SEMICOLON CHANGE
+		int comma = line.find(',');
+		name = line.substr(0, comma);
+		line.erase(0, comma + 1);
+
+		comma = line.find(',');
+		address = line.substr(0, comma);
+		line.erase(0, comma + 1);
+
+		comma = line.find(',');
+		password = line.substr(0, comma);
+		line.erase(0, comma + 1);
+
+		comma = line.find(',');
+		age = stoi(line.substr(0, comma));
+		line.erase(0, comma + 1);
+
+		Person person(name, address, password, age);
+		people.push_back(person);
+
+		long long accountNumber;
+		double balance;
+
+		comma = line.find(',');
+		accountNumber = stoll(line.substr(0, comma));
+		line.erase(0, comma + 1);
+
+		comma = line.find(',');
+		balance = stod(line.substr(0, comma));
+		line.erase(0, comma + 1);
+
+		Account account(person, accountNumber, balance);
+		accounts.push_back(account);
+
+		cout << "Name: " << name << endl;
+		cout << "Address: " << address << endl;
+		cout << "Password: " << password << endl;
+		cout << "Age: " << password << endl;
+		cout << "Account Number: " << accountNumber << endl;
+		cout << "Balance: " << balance << endl;
+		cout << endl;
+	}
 }
 
+//Database::Database()
+//{
+//	this->inputFile.open("data.txt");
+//	this->outputFile.open("data.txt");
+//}
+//
+//Database::~Database()
+//{
+//	this->inputFile.close();
+//	this->outputFile.close();
+//}
+//
+//void Database::addEntry()
+//{
+//	string name = "medhat";
+//	int age = 69;
+//	int cardNumber = 38424;
+//
+//	//accounts.push_back();
+//
+//	outputFile << name << "," << age << "," << cardNumber << endl;
+//}
+//
+//void Database::deleteEntry()
+//{
+//
+//}
+//
+//void Database::load()
+//{
+//
+//}
 
+// 
+
+//#include <iostream>
+//#include <fstream>
+//#include <string>
+//
+//using namespace std;
+//
+//long long generateAccountNumber();
+
+//int main()
+//{
+//	while (true)
+//	{
+//		cout << generateAccountNumber() << endl;
+//	}
+//
+//	/*string s = "kareem";
+//	cout << (s.find(',') != string::npos ? "has comma" : "has no comma") << endl;*/
+//}
+
+//void addEntry()
+//{
+//	ofstream outputFile("test.txt", ios::app);
+//
+//	string name = "medhat";
+//	int age = 69;
+//	int cardNumber = 38424;
+//
+//	outputFile << name << "," << age << "," << cardNumber << endl;
+//	outputFile.close();
+//}
+//
+//void deleteEntry()
+//{
+//
+//}
+//
+//void load()
+//{
+//	ifstream inputFile("test.txt");
+//
+//	string line;
+//
+//	while (getline(inputFile, line))
+//	{
+//		if (line.empty())
+//		{
+//			continue;
+//		}
+//
+//		string name;
+//		int age;
+//		int cardNumber;
+//
+//		cout << line << endl;
+//
+//		int comma = line.find(',');
+//		name = line.substr(0, comma);
+//		line.erase(0, comma + 1);
+//
+//		cout << line << endl;
+//
+//		comma = line.find(',');
+//		age = stoi(line.substr(0, comma));
+//		line.erase(0, comma + 1);
+//
+//		cout << line << endl << endl;
+//
+//		cardNumber = stoi(line.substr(0, line.length()));
+//
+//		cout << "Name: " << name << endl;
+//		cout << "Age: " << age << endl;
+//		cout << "Card Number: " << cardNumber << endl;
+//		cout << endl;
+//	}
+//
+//	inputFile.close();
+//}
+
+// YOUSEF'S CODE 
 
 //bool Database::is16Digts(long long num1)
 //{
