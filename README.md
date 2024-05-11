@@ -19,12 +19,16 @@ Some of the features the system provides are:
 
 ## Screenshots
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+Unified Modeling Language (UML) diagram for the project.
+
+![](imgs/ClassDiagram.png)
+
+Sequence Diagram for the `createUser()` function in the `main.cpp` file.
 
 
 ## Installation
 
-Install bank-management-system with bash.
+Install [bank-management-system](https://github.com/kareem-ghazi/bank-management-system) with bash
 
 ```bash
   git clone https://github.com/kareem-ghazi/smart-surveillance-system.git

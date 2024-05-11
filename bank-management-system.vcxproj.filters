@@ -15,63 +15,63 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Account.cpp">
+    <ClCompile Include="src\Account.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Person.cpp">
+    <ClCompile Include="src\Person.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Transaction.cpp">
+    <ClCompile Include="src\Transaction.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Withdraw.cpp">
+    <ClCompile Include="src\Withdraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Transfer.cpp">
+    <ClCompile Include="src\Transfer.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Database.cpp">
+    <ClCompile Include="src\Database.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="BankManager.cpp">
+    <ClCompile Include="src\BankManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Deposit.cpp">
+    <ClCompile Include="src\Deposit.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Invoice.cpp">
+    <ClCompile Include="src\Invoice.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Account.h">
+    <ClInclude Include="src\Account.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Person.h">
+    <ClInclude Include="src\Person.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transaction.h">
+    <ClInclude Include="src\Transaction.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Withdraw.h">
+    <ClInclude Include="src\Withdraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Transfer.h">
+    <ClInclude Include="src\Transfer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Database.h">
+    <ClInclude Include="src\Database.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="BankManager.h">
+    <ClInclude Include="src\BankManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Deposit.h">
+    <ClInclude Include="src\Deposit.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Invoice.h">
+    <ClInclude Include="src\Invoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

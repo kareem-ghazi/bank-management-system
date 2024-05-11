@@ -127,27 +127,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="BankManager.cpp" />
-    <ClCompile Include="Database.cpp" />
-    <ClCompile Include="Deposit.cpp" />
-    <ClCompile Include="Invoice.cpp" />
-    <ClCompile Include="Person.cpp" />
-    <ClCompile Include="Account.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Transaction.cpp" />
-    <ClCompile Include="Transfer.cpp" />
-    <ClCompile Include="Withdraw.cpp" />
+    <ClCompile Include="src\BankManager.cpp" />
+    <ClCompile Include="src\Database.cpp" />
+    <ClCompile Include="src\Deposit.cpp" />
+    <ClCompile Include="src\Invoice.cpp" />
+    <ClCompile Include="src\Person.cpp" />
+    <ClCompile Include="src\Account.cpp" />
+    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Transaction.cpp" />
+    <ClCompile Include="src\Transfer.cpp" />
+    <ClCompile Include="src\Withdraw.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="BankManager.h" />
-    <ClInclude Include="Database.h" />
-    <ClInclude Include="Deposit.h" />
-    <ClInclude Include="Invoice.h" />
-    <ClInclude Include="Person.h" />
-    <ClInclude Include="Account.h" />
-    <ClInclude Include="Transaction.h" />
-    <ClInclude Include="Transfer.h" />
-    <ClInclude Include="Withdraw.h" />
+    <ClInclude Include="src\BankManager.h" />
+    <ClInclude Include="src\Database.h" />
+    <ClInclude Include="src\Deposit.h" />
+    <ClInclude Include="src\Invoice.h" />
+    <ClInclude Include="src\Person.h" />
+    <ClInclude Include="src\Account.h" />
+    <ClInclude Include="src\Transaction.h" />
+    <ClInclude Include="src\Transfer.h" />
+    <ClInclude Include="src\Withdraw.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

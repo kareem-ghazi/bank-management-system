@@ -2,7 +2,7 @@
 
 Database::Database()
 {
-	this->inputFile.open("data.txt", ios::in);
+	this->inputFile.open("data/data.txt", ios::in);
 	
 	this->load();
 
@@ -11,7 +11,7 @@ Database::Database()
 
 Database::~Database()
 {
-	this->outputFile.open("data.txt", ios::out);
+	this->outputFile.open("data/data.txt", ios::out);
 
 	this->save();
 
