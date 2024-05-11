@@ -8,7 +8,7 @@
 
 using namespace std;
 
-//BankManager bankManager;
+BankManager bankManager;
 
 void loginUser();
 void createUser();
@@ -18,8 +18,9 @@ int main()
 	cout << "===============================================" << endl;
 	cout << "- Bank Management System: ta3bneen feh wallah -" << endl;
 	cout << "===============================================" << endl;
-	cout << "1. Login to user." << endl;
-	cout << "2. Create a new person user." << endl;
+	cout << "[1] Login to user." << endl;
+	cout << "[2] Create a new person user." << endl;
+	//cout << "[3] admistrator." << endl;
 	cout << "Enter your choice: ";
 	int choice;
 	cin >> choice;
@@ -28,9 +29,14 @@ int main()
 	{
 	case 1:
 		loginUser();
+		break;
 	case 2:
 		createUser();
+		break;
 	case 3:
+		//bankmaneger(); // fogeit about it 
+	case 4:
+
 	default:
 		break;
 	}
@@ -48,7 +54,9 @@ int main()
 
 void loginUser()
 {
-	do {
+	//int tokeen = 1;
+
+	while (true) {
 		cout << "Enter your username: " << endl;
 		string username;
 		cin >> username;
@@ -57,8 +65,18 @@ void loginUser()
 		string password;
 		cin >> password;
 
-		//bankManager.login(username, password);
-	} while (true);
+		bool status = bankManager.login(username, password); //uncompleat
+
+		if (status)
+		{
+			cout << "Successful login." << endl;
+			//accountsInterface();
+			break;
+		}
+		else {
+			cout << "Invalid credentials." << endl;
+		}
+	}
 }
 
 void createUser()
@@ -66,6 +84,10 @@ void createUser()
 	cout << "Enter your name: ";
 	string name;
 	cin >> name;
+
+	cout << "Enter your username: ";
+	string username;
+	cin >> username;
 
 	// NOTE: Deal with the exception handling. 
 	cout << "Enter your age: ";
@@ -80,7 +102,7 @@ void createUser()
 	string password;
 	cin >> password;
 
-	Person person(name, address, password, age);
+	Person person(name, username, address, password, age);
 
-	//bankManager.addPerson(person);
+	bankManager.addPerson(person); //done
 }

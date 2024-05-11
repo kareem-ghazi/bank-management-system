@@ -34,6 +34,7 @@ Install bank-management-system with bash.
 
 - [@kareem-ghazi](https://www.github.com/kareem-ghazi)
 - [@Ser5io](https://github.com/Ser5io)
+- [@Dark72234](https://github.com/Dark72234)
 
 ## License
 

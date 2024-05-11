@@ -3,24 +3,66 @@
 Database::Database()
 {
 	this->inputFile.open("data.txt", ios::in);
-	this->outputFile.open("data.txt", ios::app);
+	
+	this->load();
+
+	this->inputFile.close();
 }
 
 Database::~Database()
 {
-	this->inputFile.close();
+	this->outputFile.open("data.txt", ios::out);
+
+	this->save();
+
 	this->outputFile.close();
+}
+
+string Database::pasEncrypt(string pas)
+{
+	int stringSize = pas.size();
+
+	for (int i = 0; i < stringSize; i++)
+	{
+		if (pas[i] == '4')
+		{
+			pas[i] = '&';
+		}
+		else {
+			pas[i] = pas[i] + 7;
+		}
+	}
+
+	return pas;
+}   //unlinked
+
+string Database::pasDecrypt(string pas)
+{
+	int stringSize = pas.size();
+
+	for (int i = 0; i < stringSize; i++)
+	{
+		if (pas[i] == '&')
+		{
+			pas[i] = '4';
+		}
+		else {
+			pas[i] = pas[i] - 7;
+		}
+	}
+
+	return pas;  //unlinked
 }
 
 void Database::addEntry(Account account)
 {
 	accounts.push_back(account);
-	outputFile << account.getOwner().getName() << ","
+	/*outputFile << account.getOwner().getName() << ","
 		<< account.getOwner().getAddress() << ","
 		<< account.getOwner().getPassword() << ","
 		<< account.getOwner().getAge() << ","
 		<< account.getAccountNumber() << ","
-		<< account.getBalance() << endl;
+		<< account.getBalance() << endl;*/
 
 	/*for (int i = 0; i < accounts.size(); i++)
 	{
@@ -37,7 +79,10 @@ void Database::addEntry(Account account)
 
 void Database::deleteEntry(Account account)
 {
-
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		
+	}
 }
 
 void Database::load()
@@ -52,6 +97,7 @@ void Database::load()
 		}
 
 		string name;
+		string username;
 		string address;
 		string password;
 		int age;
@@ -59,47 +105,71 @@ void Database::load()
 		// idea: links line number to account number
 		// idea: pointers to vectors
 		// SEMICOLON CHANGE
-		int comma = line.find(',');
+		int comma = line.find(';');
 		name = line.substr(0, comma);
 		line.erase(0, comma + 1);
 
-		comma = line.find(',');
+		comma = line.find(';');
+		username = line.substr(0, comma);
+		line.erase(0, comma + 1);
+
+		comma = line.find(';');
 		address = line.substr(0, comma);
 		line.erase(0, comma + 1);
 
-		comma = line.find(',');
-		password = line.substr(0, comma);
+		comma = line.find(';');
+		password = pasDecrypt(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
-		comma = line.find(',');
+		comma = line.find(';');
 		age = stoi(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
-		Person person(name, address, password, age);
+		Person person(name, username, address, password, age);
 		people.push_back(person);
 
 		long long accountNumber;
 		double balance;
 
-		comma = line.find(',');
+		comma = line.find(';');
 		accountNumber = stoll(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
-		comma = line.find(',');
+		comma = line.find(';');
 		balance = stod(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
 		Account account(person, accountNumber, balance);
 		accounts.push_back(account);
 
-		cout << "Name: " << name << endl;
+		/*cout << "Name: " << name << endl;
+		cout << "Username: " << username << endl;
 		cout << "Address: " << address << endl;
 		cout << "Password: " << password << endl;
-		cout << "Age: " << password << endl;
+		cout << "Age: " << age << endl;
 		cout << "Account Number: " << accountNumber << endl;
 		cout << "Balance: " << balance << endl;
-		cout << endl;
+		cout << endl;*/
 	}
+}
+
+void Database::save()
+{
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		outputFile << accounts[i].getOwner().getName() << ";"
+			<< accounts[i].getOwner().getUsername() << ";"
+			<< accounts[i].getOwner().getAddress() << ";"
+			<< pasEncrypt(accounts[i].getOwner().getPassword()) << ";"
+			<< accounts[i].getOwner().getAge() << ";"
+			<< accounts[i].getAccountNumber() << ";"
+			<< accounts[i].getBalance() << endl;
+	}
+}
+
+vector<Account> Database::getAccounts() const
+{
+	return this->accounts;
 }
 
 //Database::Database()

@@ -65,3 +65,31 @@ double BankManager::result()
 		return 0;
 	}
 }
+
+int BankManager::getTerm()
+{
+	return termenator;
+}
+
+bool BankManager::login(string username, string password)
+{
+	vector<Account> accounts = database.getAccounts();
+
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (username == accounts[i].getOwner().getUsername()
+			&& password == accounts[i].getOwner().getPassword())
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
+
+void BankManager::addPerson(Person userPerson)
+{
+	database.addEntry(userPerson);
+}
+
+

@@ -23,9 +23,15 @@ public:
 	Database();
 	~Database();
 
+	string pasEncrypt(string pas);
+	string pasDecrypt(string pas);
+
 	void addEntry(Account account);
 	void deleteEntry(Account account);
 	void load();
+	void save();
+
+	vector<Account> getAccounts() const;
 };
 
 #endif
