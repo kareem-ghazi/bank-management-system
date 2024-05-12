@@ -87,9 +87,39 @@ bool BankManager::login(string username, string password)
 	return false;
 }
 
-void BankManager::addPerson(Person userPerson)
+void BankManager::addAccount(Account account)
 {
-	database.addEntry(userPerson);
+	database.addEntry(account);
+}
+
+Account BankManager::getAccount(string username) const
+{
+	vector<Account> accounts = database.getAccounts();
+
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (username == accounts[i].getOwner().getUsername())
+		{
+			return accounts[i];
+		}
+	}
+
+	return Account();
+}
+
+bool BankManager::findUsername(string username)
+{
+	vector<Account> accounts = database.getAccounts();
+
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (username == accounts[i].getOwner().getUsername())
+		{
+			return true;
+		}
+	}
+
+	return false;
 }
 
 

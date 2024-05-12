@@ -148,6 +148,7 @@
     <ClInclude Include="src\Transaction.h" />
     <ClInclude Include="src\Transfer.h" />
     <ClInclude Include="src\Withdraw.h" />
+    <ClInclude Include="useless.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

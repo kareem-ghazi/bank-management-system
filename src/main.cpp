@@ -9,73 +9,70 @@
 using namespace std;
 
 BankManager bankManager;
+Account account;
 
 void loginUser();
 void createUser();
+void userInterface();
+void enterAccount();
+void createAccount();
 
 int main()
 {
-	cout << "===============================================" << endl;
-	cout << "- Bank Management System: ta3bneen feh wallah -" << endl;
-	cout << "===============================================" << endl;
-	cout << "[1] Login to user." << endl;
-	cout << "[2] Create a new person user." << endl;
-	//cout << "[3] admistrator." << endl;
-	cout << "Enter your choice: ";
-	int choice;
-	cin >> choice;
-
-	switch (choice)
+	while (true)
 	{
-	case 1:
-		loginUser();
-		break;
-	case 2:
-		createUser();
-		break;
-	case 3:
-		//bankmaneger(); // fogeit about it 
-	case 4:
+		cout << "===============================================" << endl;
+		cout << "- Bank Management System: ta3bneen feh wallah -" << endl;
+		cout << "===============================================" << endl;
+		cout << "[1] Login to user." << endl;
+		cout << "[2] Create a new person user." << endl;
+		//cout << "[3] admistrator." << endl;
+		cout << "[4] Quit." << endl;
+		cout << "Enter your choice: ";
+		int choice;
+		cin >> choice;
 
-	default:
-		break;
+		switch (choice)
+		{
+		case 1:
+			loginUser();
+			break;
+		case 2:
+			createUser();
+			break;
+		case 3:
+			//bankmaneger(); // fogeit about it 
+		case 4:
+			cout << "Successfully exited program." << endl;
+			return 0;
+		default:
+			break;
+		}
 	}
-
-	// KAREEM'S CODE
-	//Database database;
-	//Person person("Kareem", "Gedila Mansoura Egypt", "123456", 19);
-	//Account account(person);
-
-	////database.addEntry(account); // CANNOT ADD BALANCE BECAUSE WE CLOSED IT
-	//database.load();
 
 	return 0;
 }
 
 void loginUser()
 {
-	//int tokeen = 1;
+	cout << "Enter your username: ";
+	string username;
+	cin >> username;
 
-	while (true) {
-		cout << "Enter your username: " << endl;
-		string username;
-		cin >> username;
+	cout << "Enter your password: ";
+	string password;
+	cin >> password;
 
-		cout << "Enter your password: " << endl;
-		string password;
-		cin >> password;
+	bool status = bankManager.login(username, password); //uncompleat
 
-		bool status = bankManager.login(username, password); //uncompleat
-
-		if (status)
-		{
-			cout << "Successful login." << endl;
-			//accountsInterface();
-			break;
-		}
-		else {
-			cout << "Invalid credentials." << endl;
-		}
+	if (status)
+	{
+		cout << "Successful login." << endl;
+		account = bankManager.getAccount(username);
+		userInterface();
+	}
+	else {
+		cout << "Invalid credentials." << endl;
 	}
 }
 
@@ -88,6 +85,12 @@ void createUser()
 	cout << "Enter your username: ";
 	string username;
 	cin >> username;
+
+	if (bankManager.findUsername(username))
+	{
+		cout << "Error: Username already exists.";
+		return;
+	}
 
 	// NOTE: Deal with the exception handling. 
 	cout << "Enter your age: ";
@@ -103,6 +106,51 @@ void createUser()
 	cin >> password;
 
 	Person person(name, username, address, password, age);
+	Account account(person);
 
-	bankManager.addPerson(person); //done
+	bankManager.addAccount(account); //done
+}
+
+void userInterface()
+{
+	while (true)
+	{
+		cout << "===============================================" << endl;
+		cout << "- Welcome, " << account.getOwner().getUsername() << ": ta3bneen feh wallah^2 -" << endl;
+		cout << "===============================================" << endl;
+		cout << "[1] Enter an account." << endl;
+		cout << "[2] Create an account." << endl;
+		//cout << "[3] Delete an account." << endl;
+		cout << "[4] Quit." << endl;
+		cout << "Enter your choice: ";
+		int choice;
+		cin >> choice;
+
+		switch (choice)
+		{
+		case 1:
+			enterAccount();
+			break;
+		case 2:
+			createAccount();
+			break;
+		case 3:
+			break;
+		case 4:
+			cout << "Successfully logined out." << endl;
+			return;
+		default:
+			break;
+		}
+	}
+}
+
+void enterAccount()
+{
+	
+}
+
+void createAccount()
+{
+
 }

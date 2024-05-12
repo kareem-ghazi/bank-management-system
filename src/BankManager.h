@@ -32,7 +32,10 @@ public:
 
 	int getTerm();
 	bool login(string name, string pas);
-	void addPerson(Person userPerson);
+	void addAccount(Account account);
+	Account getAccount(string username) const;
+	void removeAccount(Account account);
+	bool findUsername(string username);
 };
 
 #endif

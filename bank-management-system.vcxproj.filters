@@ -74,6 +74,9 @@
     <ClInclude Include="src\Invoice.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="useless.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />

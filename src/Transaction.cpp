@@ -11,3 +11,8 @@ void Transaction::setDate(string date) {
 double Transaction::getAmount() const {
 	return this->amount;
 }
+
+void Transaction::setAmount(double amount)
+{
+	this->amount = amount;
+}

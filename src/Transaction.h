@@ -17,6 +17,7 @@ public:
 	string getDate() const;
 	void setDate(string date);
 	double getAmount() const;
+	virtual void setAmount(double amount);
 };
 
 #endif
