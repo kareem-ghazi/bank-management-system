@@ -107,6 +107,22 @@ Account BankManager::getAccount(string username) const
 	return Account();
 }
 
+vector<Account> BankManager::getAccountsOf(Person person) const
+{
+	vector<Account> accounts = database.getAccounts();
+	vector<Account> accountsOf;
+
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (person.getUsername() == accounts[i].getOwner().getUsername())
+		{
+			accountsOf.push_back(accounts[i]);
+		}
+	}
+
+	return accountsOf;
+}
+
 bool BankManager::findUsername(string username)
 {
 	vector<Account> accounts = database.getAccounts();
@@ -119,6 +135,15 @@ bool BankManager::findUsername(string username)
 		}
 	}
 
+	return false;
+}
+
+bool BankManager::deposit(Account account, double amount)
+{
+	Deposit deposit(account);
+	deposit.setAmount(amount);
+
+	//account.setBalance();
 	return false;
 }
 

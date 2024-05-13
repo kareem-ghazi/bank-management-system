@@ -45,6 +45,12 @@ double Account::getBalance() const {
 	return balance;
 }
 
+// Sets the amount of balance of the account.
+void Account::setBalance(double balance)
+{
+	this->balance = balance;
+}
+
 // Generates an new random account number.
 long long Account::generateAccountNumber()
 {

@@ -3,6 +3,8 @@
 
 #include "Database.h"
 #include "BankManager.h"
+#include "Invoice.h"
+#include "Deposit.h"
 #include "Account.h"
 #include <iostream>
 
@@ -18,6 +20,7 @@ using namespace std;
 class BankManager
 {
 private:
+	Invoice invoice;
 	Database database;
 	int num;
 	int currency;
@@ -34,8 +37,11 @@ public:
 	bool login(string name, string pas);
 	void addAccount(Account account);
 	Account getAccount(string username) const;
+	vector<Account> getAccountsOf(Person person) const;
 	void removeAccount(Account account);
 	bool findUsername(string username);
+
+	bool deposit(Account account, double amount);
 };
 
 #endif
