@@ -23,7 +23,10 @@ public:
 	void setOwner(Person owner);
 	long long getAccountNumber() const;
 	double getBalance() const;
-	void setBalance(double balance);
+
+	void deposit(double amount);
+	void withdraw(double amount);
+	void transfer(Account* account, double amount);
 };
 
 #endif

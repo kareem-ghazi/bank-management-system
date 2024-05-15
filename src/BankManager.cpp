@@ -66,11 +66,6 @@ double BankManager::result()
 	}
 }
 
-int BankManager::getTerm()
-{
-	return termenator;
-}
-
 bool BankManager::login(string username, string password)
 {
 	vector<Account> accounts = database.getAccounts();
@@ -92,19 +87,29 @@ void BankManager::addAccount(Account account)
 	database.addEntry(account);
 }
 
-Account BankManager::getAccount(string username) const
+void BankManager::removeAccount(Account account)
 {
-	vector<Account> accounts = database.getAccounts();
+	database.deleteEntry(account);
+}
 
-	for (int i = 0; i < accounts.size(); i++)
+void BankManager::addPerson(Person person)
+{
+	database.addEntry(person);
+}
+
+Person BankManager::getPerson(string username) const
+{
+	vector<Person> people = database.getPeople();
+
+	for (int i = 0; i < people.size(); i++)
 	{
-		if (username == accounts[i].getOwner().getUsername())
+		if (username == people[i].getUsername())
 		{
-			return accounts[i];
+			return people[i];
 		}
 	}
 
-	return Account();
+	return Person();
 }
 
 vector<Account> BankManager::getAccountsOf(Person person) const
@@ -123,13 +128,53 @@ vector<Account> BankManager::getAccountsOf(Person person) const
 	return accountsOf;
 }
 
-bool BankManager::findUsername(string username)
+int BankManager::getNumberOfAccounts(Person person) const
 {
 	vector<Account> accounts = database.getAccounts();
 
+	int count = 0;
+
 	for (int i = 0; i < accounts.size(); i++)
 	{
-		if (username == accounts[i].getOwner().getUsername())
+		if (person.getUsername() == accounts[i].getOwner().getUsername())
+		{
+			count++;
+		}
+	}
+
+	return count;
+}
+
+void BankManager::printInformation(Account account)
+{
+	Account* originalAccount = database.getAccount(account.getAccountNumber());
+
+	cout << "==========================" << endl;
+	cout << "Account Owner: " << originalAccount->getOwner().getName()
+		<< "(" << originalAccount->getOwner().getUsername() << ")" << endl;
+	cout << "Account Number: " << originalAccount->getAccountNumber() << endl;
+	cout << "Account Balance: " << originalAccount->getBalance() << endl;
+	cout << "==========================" << endl;
+}
+
+void BankManager::printInformation(Person person)
+{
+	cout << "==========================" << endl;
+	cout << "Name: " << person.getName() << endl;
+	cout << "Username: " << person.getUsername() << endl;
+	cout << "Age: " << person.getAge() << endl;
+	cout << "Address: " << person.getAddress() << endl;
+	cout << "Owned Accounts: " << getNumberOfAccounts(person) << endl;
+	cout << "==========================" << endl;
+}
+
+bool BankManager::findUsername(string username)
+{
+	vector<Person> people = database.getPeople();
+
+	for (int i = 0; i < people.size(); i++)
+	{
+		if (username == people[i].getUsername())
 		{
 			return true;
 		}
@@ -138,13 +183,45 @@ bool BankManager::findUsername(string username)
 	return false;
 }
 
-bool BankManager::deposit(Account account, double amount)
+void BankManager::deposit(Account account, double amount)
 {
-	Deposit deposit(account);
+	Account* originalAccount = database.getAccount(account.getAccountNumber());
+
+	Deposit deposit(*originalAccount);
 	deposit.setAmount(amount);
 
-	//account.setBalance();
-	return false;
+	originalAccount->deposit(amount);
+	invoice.addTransaction(deposit);
 }
+
+void BankManager::withdraw(Account account, double amount)
+{
+	Account* originalAccount = database.getAccount(account.getAccountNumber());
+
+	Withdraw withdraw(*originalAccount);
+	withdraw.setAmount(amount);
+
+	originalAccount->withdraw(amount);
+	invoice.addTransaction(withdraw);
+}
+
+void BankManager::transfer(Account accountFrom, Account accountTo, double amount)
+{
+	Account* originalAccountFrom = database.getAccount(accountFrom.getAccountNumber());
+	Account* originalAccountTo = database.getAccount(accountTo.getAccountNumber());
+
+	Transfer transfer(accountFrom, accountTo);
+	transfer.setAmount(amount);
+
+	originalAccountFrom->transfer(originalAccountTo, amount);
+	invoice.addTransaction(transfer);
+}
+
+//void BankManager::printInvoice()
+//{
+//	cout << "name is: " << account.getOwner().getName();
+//	cout << "Account Number is:" << account.getAccountNumber();
+//}
+
 
 

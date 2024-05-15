@@ -1,13 +1,13 @@
 #include "Invoice.h"
 
-Transaction Invoice::getTransaction()
+vector<Transaction> Invoice::getTransactions() const
 {
-    return this->transaction;
+    return this->transactions;
 }
 
-void Invoice::setTransaction(Transaction transaction)
+void Invoice::addTransaction(Transaction transaction)
 {
-    this->transaction = transaction;
+    transactions.push_back(transaction);
 }
 
 Account Invoice::getAccount()
@@ -18,10 +18,4 @@ Account Invoice::getAccount()
 void Invoice::setAccount(Account account)
 {
     this->account = account;
-}
-
-void Invoice::printInvoice()
-{
-    cout << "name is: " << account.getOwner().getName();
-    cout << "Account Number is:" << account.getAccountNumber();
 }

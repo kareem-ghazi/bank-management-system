@@ -14,7 +14,16 @@ private:
     Account accountTo;
     
 public:
-    Transfer(); // UNCOMPLETE
+    Transfer(Account accountFrom, Account accountTo);
+    
+    Account getAccountFrom() const;
+    Account getAccountTo() const;
+    void setAccountFrom(Account accountFrom);
+    void setAccountTo(Account accountTo);
+
+    void setAmount(double amount);
+    
+    // UNCOMPLETE
     //Transfer transfer1;
 
     /* ONE WAY*/

@@ -9,6 +9,7 @@
 using namespace std;
 
 BankManager bankManager;
+Person person;
 Account account;
 
 void loginUser();
@@ -18,12 +19,14 @@ void userInterface();
 void enterAccount();
 void createAccount();
 void deleteAccount();
+void printPersonInformation();
 
-void accountsInterface(Account account);
-void deposit(Account account);
-void withdraw(Account account);
-void transfer(Account accountFrom);
-void printInvoice(Account account);
+void accountsInterface();
+void deposit();
+void withdraw();
+void transfer();
+void printInvoice();
+void printAccountInformation();
 
 int main()
 {
@@ -34,8 +37,7 @@ int main()
 		cout << "===============================================" << endl;
 		cout << "[1] Login to user." << endl;
 		cout << "[2] Create a new person user." << endl;
-		//cout << "[3] admistrator." << endl; // DONT THINK ITS IMPORTANT AS THE CODE IS GETTING VERY BIG!!!
-		cout << "[4] Quit." << endl;
+		cout << "[3] Save." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -49,8 +51,6 @@ int main()
 			createUser();
 			break;
 		case 3:
-			//bankmaneger(); // fogeit about it 
-		case 4:
 			cout << "Successfully exited program." << endl;
 			return 0;
 		default:
@@ -71,12 +71,12 @@ void loginUser()
 	string password;
 	cin >> password;
 
-	bool status = bankManager.login(username, password); //uncompleat
+	bool status = bankManager.login(username, password);
 
 	if (status)
 	{
 		cout << "Successful login." << endl;
-		account = bankManager.getAccount(username);
+		person = bankManager.getPerson(username);
 		userInterface();
 	}
 	else {
@@ -116,6 +116,7 @@ void createUser()
 	Person person(name, username, address, password, age);
 	Account account(person);
 
+	bankManager.addPerson(person);
 	bankManager.addAccount(account); //done
 }
 
@@ -124,12 +125,13 @@ void userInterface()
 	while (true)
 	{
 		cout << "===============================================" << endl;
-		cout << "- Welcome, " << account.getOwner().getUsername() << ": ta3bneen feh wallah^2 -" << endl;
+		cout << "- Welcome, " << person.getUsername() << ": ta3bneen feh wallah^2 -" << endl;
 		cout << "===============================================" << endl;
 		cout << "[1] Enter an account." << endl;
 		cout << "[2] Create an account." << endl;
 		cout << "[3] Delete an account." << endl;
-		cout << "[4] Quit." << endl;
+		cout << "[4] Print information." << endl;
+		cout << "[5] Save." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -146,6 +148,9 @@ void userInterface()
 			deleteAccount();
 			break;
 		case 4:
+			printPersonInformation();
+			break;
+		case 5:
 			cout << "Successfully logined out." << endl;
 			return;
 		default:
@@ -156,7 +161,7 @@ void userInterface()
 
 void enterAccount()
 {
-	vector<Account> accounts = bankManager.getAccountsOf(account.getOwner());
+	vector<Account> accounts = bankManager.getAccountsOf(person);
 	
 	int i = 0;
 	for (i = 0; i < accounts.size(); i++)
@@ -168,20 +173,35 @@ void enterAccount()
 	int choice;
 	cin >> choice;
 
-	accountsInterface(accounts[choice - 1]);
+	account = accounts[choice - 1];
+	accountsInterface();
 }
 
 void createAccount()
 {
+	Account account(person);
 
+	bankManager.addAccount(account);
 }
 
 void deleteAccount()
 {
+	vector<Account> accounts = bankManager.getAccountsOf(person);
 
+	int i = 0;
+	for (i = 0; i < accounts.size(); i++)
+	{
+		cout << "[" << i + 1 << "]: " << accounts[i].getAccountNumber() << endl;
+	}
+
+	cout << "Enter your choice: ";
+	int choice;
+	cin >> choice;
+
+	bankManager.removeAccount(accounts[choice - 1]);
 }
 
-void accountsInterface(Account account)
+void accountsInterface()
 {
 	while (true)
 	{
@@ -192,7 +212,8 @@ void accountsInterface(Account account)
 		cout << "[2] Withdraw an amount." << endl;
 		cout << "[3] Transfer an amount." << endl;
 		cout << "[4] Print an invoice." << endl;
-		cout << "[5] Quit." << endl;
+		cout << "[5] Print information." << endl;
+		cout << "[6] Save." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -200,18 +221,21 @@ void accountsInterface(Account account)
 		switch (choice)
 		{
 		case 1:
-			deposit(account);
+			deposit();
 			break;
 		case 2:
-			withdraw(account);
+			withdraw();
 			break;
 		case 3:
-			transfer(account);
+			transfer();
 			break;
 		case 4:
-			printInvoice(account);
+			printInvoice();
 			break;
 		case 5:
+			printAccountInformation();
+			break;
+		case 6:
 			cout << "Successfully logined out." << endl;
 			return;
 		default:
@@ -220,7 +244,7 @@ void accountsInterface(Account account)
 	}
 }
 
-void deposit(Account account)
+void deposit()
 {
 	cout << "Enter amount: ";
 	double amount;
@@ -229,16 +253,16 @@ void deposit(Account account)
 	bankManager.deposit(account, amount);
 }
 
-void withdraw(Account account)
+void withdraw()
 {
 	cout << "Enter amount: ";
 	double amount;
 	cin >> amount;
 
-	//bankManager.withdraw(account, amount);
+	bankManager.withdraw(account, amount);
 }
 
-void transfer(Account accountFrom)
+void transfer()
 {
 	cout << "Enter amount: ";
 	double amount;
@@ -253,7 +277,17 @@ void transfer(Account accountFrom)
 	//bankManager.transfer(accountFrom, accountTo, amount);
 }
 
-void printInvoice(Account account)
+void printInvoice()
 {
 	//bankManager.printInvoice(account);
+}
+
+void printAccountInformation()
+{
+	bankManager.printInformation(account);
+}
+
+void printPersonInformation()
+{
+	bankManager.printInformation(person);
 }

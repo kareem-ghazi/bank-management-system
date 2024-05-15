@@ -9,15 +9,13 @@ class Invoice
 {
 private:
 	Account account;
-	Transaction transaction;
+	vector<Transaction> transactions;
 
 public:
-	Transaction getTransaction();
-	void setTransaction(Transaction transaction);
+	vector<Transaction> getTransactions() const;
+	void addTransaction(Transaction transaction);
 	Account getAccount();
 	void setAccount(Account account);
-
-	void printInvoice();
 };
 
 #endif

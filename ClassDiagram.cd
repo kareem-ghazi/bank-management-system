@@ -3,21 +3,21 @@
   <Class Name="Account">
     <Position X="18.75" Y="2.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAgAgCAAgAAAgAAAAAAACAAIAAAAAAAAAAACAAAAAEA=</HashCode>
+      <HashCode>AAgAgCAAgAAAgAAAAAAACAAIAAEABAAAAAACAgAAAEA=</HashCode>
       <FileName>src\Account.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="BankManager">
     <Position X="21.75" Y="2.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAACAAABAAAgBQBgAIAAAAEIAABAIAQAJAAAAAEIA=</HashCode>
+      <HashCode>AAgBQCQAABAAAgBQBgAIAAAggIEABAIAAAJAAgAAEIA=</HashCode>
       <FileName>src\BankManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Database">
-    <Position X="21.75" Y="7.25" Width="2.5" />
+    <Position X="21.75" Y="8.75" Width="2.5" />
     <TypeIdentifier>
-      <HashCode>AIACgAAACMCAAABAAAAAAACIAIAAAAAAAAAAAAAAAIA=</HashCode>
+      <HashCode>AIACgAAACMCAAABAAAAAAACIAIAAAAAAQAAAAAAAAoA=</HashCode>
       <FileName>src\Database.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -29,9 +29,9 @@
     </TypeIdentifier>
   </Class>
   <Class Name="Invoice">
-    <Position X="18.75" Y="5.5" Width="2.25" />
+    <Position X="18.75" Y="6.25" Width="2.25" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAQAAAAAAAAAAAAAAACAAAAIQAAAQAAAgAA=</HashCode>
+      <HashCode>AAAAAAAQAAQAAAAAAAAAAAAAAAAAAAAIQAAAQAAAgAA=</HashCode>
       <FileName>src\Invoice.h</FileName>
     </TypeIdentifier>
   </Class>
@@ -52,14 +52,14 @@
   <Class Name="Transfer">
     <Position X="13.75" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAQAAAAAAAAAAAAAAAQAAAAAAAAAABAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAQAAAAAAAEAAAIAAAQAAAAAAABAABAEAAAQAAAA=</HashCode>
       <FileName>src\Transfer.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Withdraw">
     <Position X="11.5" Y="5.5" Width="2" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAQAAAAAAIAAAAAAAAAAAAAAQAAAQAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAQAAAAAAIAAAAAEAAAAAAAAQAAAQAAAAAA=</HashCode>
       <FileName>src\Withdraw.h</FileName>
     </TypeIdentifier>
   </Class>

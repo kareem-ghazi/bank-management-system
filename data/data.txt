@@ -1,11 +1,2 @@
-kareem;kareemgh;gedila;89:&<=;19;3346533804350971;0
-kareem;mohamedgh;hamada;89:&<=;19;3323540846623475;0
-kareem;hamdax;gedila;89:&<=;19;3390188016342293;0
-kareem;hamdax;gedila;89:&<=;19;3390188016342213;0
-kareem;hamdax;gedila;89:&<=;19;3390188016342293;0
-kareem;hamdax;gedila;89:&<=;19;3390188016349299;0
-kareem;hamdax;gedila;89:&<=;19;3390188016342292;0
-fares;faresx12;kafrelsheikh;olssv89:;19;3394234879522010;0
-fares;faresx12;kafrelsheikh;olssv89:;19;3394234879522010;0
-fares;faresx12;kafrelsheikh;olssv89:;19;3394234879522010;0
-MohamedHandosa;hamda;mansoura;89:&<=>;36;3390737591581841;0
+kareem;kareemgh;gedila;89:&<=;19;3320553666726893;75.5
+kareem;kareemgh;gedila;89:&<=;19;3320325696996299;0

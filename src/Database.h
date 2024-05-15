@@ -27,11 +27,14 @@ public:
 	string pasDecrypt(string pas);
 
 	void addEntry(Account account);
+	void addEntry(Person person);
 	void deleteEntry(Account account);
 	void load();
 	void save();
 
 	vector<Account> getAccounts() const;
+	Account* getAccount(long long accountNumber);
+	vector<Person> getPeople() const;
 };
 
 #endif

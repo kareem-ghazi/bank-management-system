@@ -5,6 +5,8 @@
 #include "BankManager.h"
 #include "Invoice.h"
 #include "Deposit.h"
+#include "Withdraw.h"
+#include "Transfer.h"
 #include "Account.h"
 #include <iostream>
 
@@ -33,15 +35,23 @@ public:
 	void setvalue();
 	double result();
 
-	int getTerm();
-	bool login(string name, string pas);
-	void addAccount(Account account);
-	Account getAccount(string username) const;
-	vector<Account> getAccountsOf(Person person) const;
-	void removeAccount(Account account);
 	bool findUsername(string username);
+	bool login(string name, string pas);
 
-	bool deposit(Account account, double amount);
+	void addAccount(Account account);
+	void removeAccount(Account account);
+	void addPerson(Person person);
+	
+	Person getPerson(string username) const;
+	vector<Account> getAccountsOf(Person person) const;
+	int getNumberOfAccounts(Person person) const;
+
+	void printInformation(Account account);
+	void printInformation(Person person);
+
+	void deposit(Account account, double amount);
+	void withdraw(Account account, double amount);
+	void transfer(Account accountFrom, Account accountTo, double amount);
 };
 
 #endif

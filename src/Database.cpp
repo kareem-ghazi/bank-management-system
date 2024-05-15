@@ -64,12 +64,21 @@ void Database::addEntry(Account account)
 	accounts.push_back(account);
 }
 
+// Adds person to the database.
+void Database::addEntry(Person person)
+{
+	people.push_back(person);
+}
+
 // Deletes entry from the database.
 void Database::deleteEntry(Account account)
 {
 	for (int i = 0; i < accounts.size(); i++)
 	{
-		
+		if (account.getAccountNumber() == accounts[i].getAccountNumber())
+		{
+			accounts.erase(accounts.begin() + i);
+		}
 	}
 }
 
@@ -152,4 +161,22 @@ void Database::save()
 vector<Account> Database::getAccounts() const
 {
 	return this->accounts;
+}
+
+Account* Database::getAccount(long long accountNumber)
+{
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (accountNumber == accounts[i].getAccountNumber())
+		{
+			return &accounts[i];
+		}
+	}
+
+	return nullptr;
+}
+
+vector<Person> Database::getPeople() const
+{
+	return this->people;
 }

@@ -11,6 +11,8 @@ private:
 	Account account;
 
 public:
+	Withdraw(Account account);
+
 	Account getAccount() const;
 	void setAccount(Account account);
 
