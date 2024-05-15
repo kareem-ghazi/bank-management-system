@@ -3,17 +3,28 @@
 
 #include <vector>
 #include "Account.h"
-#include "Transaction.h"
+#include "Deposit.h"
+#include "Withdraw.h"
+#include "Transfer.h"
 
 class Invoice
 {
 private:
 	Account account;
-	vector<Transaction> transactions;
+	vector<Deposit> deposits;
+	vector<Withdraw> withdraws;
+	vector<Transfer> transfers;
 
 public:
-	vector<Transaction> getTransactions() const;
-	void addTransaction(Transaction transaction);
+	vector<Deposit> getDeposits() const;
+	vector<Withdraw> getWithdraws() const;
+	vector<Transfer> getTransfers() const;
+
+	void addTransaction(Deposit deposit);
+	void addTransaction(Withdraw withdraw);
+	void addTransaction(Transfer transfer);
+	void clearTransactions();
+	
 	Account getAccount();
 	void setAccount(Account account);
 };

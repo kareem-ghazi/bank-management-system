@@ -43,11 +43,14 @@ public:
 	void addPerson(Person person);
 	
 	Person getPerson(string username) const;
+	Account getAccount(long long accountNumber);
 	vector<Account> getAccountsOf(Person person) const;
 	int getNumberOfAccounts(Person person) const;
 
 	void printInformation(Account account);
 	void printInformation(Person person);
+	void clearInvoice();
+	void printInvoice(Account account);
 
 	void deposit(Account account, double amount);
 	void withdraw(Account account, double amount);

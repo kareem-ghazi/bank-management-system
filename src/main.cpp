@@ -42,6 +42,9 @@ int main()
 		int choice;
 		cin >> choice;
 
+		// ERROR: Putting any characters in the choice breaks the program. 
+		// Must check that it is integer.
+
 		switch (choice)
 		{
 		case 1:
@@ -96,7 +99,13 @@ void createUser()
 
 	if (bankManager.findUsername(username))
 	{
-		cout << "Error: Username already exists.";
+		cout << "Error: Username already exists." << endl;
+		return;
+	}
+
+	if (username.find(';') != string::npos)
+	{
+		cout << "Error: Semicolon can't be in username." << endl;
 		return;
 	}
 
@@ -174,6 +183,7 @@ void enterAccount()
 	cin >> choice;
 
 	account = accounts[choice - 1];
+	bankManager.clearInvoice();
 	accountsInterface();
 }
 
@@ -250,6 +260,8 @@ void deposit()
 	double amount;
 	cin >> amount;
 
+	// ERROR: Add a limit to the amount.
+
 	bankManager.deposit(account, amount);
 }
 
@@ -258,6 +270,8 @@ void withdraw()
 	cout << "Enter amount: ";
 	double amount;
 	cin >> amount;
+
+	// ERROR: Add a limit to the amount.
 
 	bankManager.withdraw(account, amount);
 }
@@ -268,18 +282,20 @@ void transfer()
 	double amount;
 	cin >> amount;
 
+	// ERROR: Add a limit to the amount.
+
 	cout << "Enter account number that you want to transfer to: ";
 	long long accountNumber;
 	cin >> accountNumber;
 
-	//Account accountTo = bankManager.getAccount(accountNumber);
+	Account accountTo = bankManager.getAccount(accountNumber);
 
-	//bankManager.transfer(accountFrom, accountTo, amount);
+	bankManager.transfer(account, accountTo, amount);
 }
 
 void printInvoice()
 {
-	//bankManager.printInvoice(account);
+	bankManager.printInvoice(account);
 }
 
 void printAccountInformation()

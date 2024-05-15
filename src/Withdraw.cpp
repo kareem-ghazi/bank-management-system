@@ -23,6 +23,6 @@ void Withdraw::setAmount(double amount)
 	}
 	else {
 		cout << "Error: Couldn't withdraw money. Not enough in balance." << endl;
-		assert(false);
+		//assert(false);
 	}
 }

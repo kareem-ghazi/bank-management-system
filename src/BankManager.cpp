@@ -112,6 +112,21 @@ Person BankManager::getPerson(string username) const
 	return Person();
 }
 
+Account BankManager::getAccount(long long accountNumber)
+{
+	vector<Account> accounts = database.getAccounts();
+
+	for (int i = 0; i < accounts.size(); i++)
+	{
+		if (accountNumber == accounts[i].getAccountNumber())
+		{
+			return accounts[i];
+		}
+	}
+
+	return Account();
+}
+
 vector<Account> BankManager::getAccountsOf(Person person) const
 {
 	vector<Account> accounts = database.getAccounts();
@@ -217,11 +232,43 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 	invoice.addTransaction(transfer);
 }
 
-//void BankManager::printInvoice()
-//{
-//	cout << "name is: " << account.getOwner().getName();
-//	cout << "Account Number is:" << account.getAccountNumber();
-//}
+void BankManager::clearInvoice()
+{
+	invoice.clearTransactions();
+}
+
+void BankManager::printInvoice(Account account)
+{
+	vector<Deposit> deposits = invoice.getDeposits();
+	vector<Withdraw> withdraws = invoice.getWithdraws();
+	vector<Transfer> transfers = invoice.getTransfers();
+
+	int count = 1;
+
+	cout << "===========================" << endl;
+
+	for (int i = 0; i < deposits.size(); i++, count++)
+	{
+		cout << "Transaction #" << count << ": " << "(DEPOSIT)" << endl;
+		cout << "Amount: " << deposits[i].getAmount() << endl << endl;
+	}
+
+	for (int i = 0; i < withdraws.size(); i++, count++)
+	{
+		cout << "Transaction #" << count << ": " << "(WITHDRAW)" << endl;
+		cout << "Amount: " << withdraws[i].getAmount() << endl << endl;
+	}
+
+	for (int i = 0; i < transfers.size(); i++, count++)
+	{
+		cout << "Transaction #" << count << ": " << "(TRANSFER)" << endl;
+		cout << transfers[i].getAccountFrom().getOwner().getUsername() << " >>>> " 
+			<< transfers[i].getAccountTo().getOwner().getUsername() << endl;
+		cout << "Amount: " << transfers[i].getAmount() << endl;
+	}
+
+	cout << "===========================" << endl;
+}
 
 
 
