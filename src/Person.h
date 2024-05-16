@@ -28,8 +28,6 @@ public:
 	string getPassword() const;
 	int getAge() const;
 	void setAge(int age);
-
-	void printInfo() const;
 };
 
 #endif

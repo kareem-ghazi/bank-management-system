@@ -66,11 +66,4 @@ void Person::setAge(int age)
 	}
 }
 
-void Person::printInfo() const
-{
-	cout << "Name: " << name << endl;
-	cout << "Address: " << address << endl;
-	cout << "Age: " << age << endl;
-}
-
 

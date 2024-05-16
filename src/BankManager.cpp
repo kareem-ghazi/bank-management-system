@@ -166,9 +166,9 @@ void BankManager::printInformation(Account account)
 
 	cout << "==========================" << endl;
 	cout << "Account Owner: " << originalAccount->getOwner().getName()
-		<< "(" << originalAccount->getOwner().getUsername() << ")" << endl;
+		<< " (" << originalAccount->getOwner().getUsername() << ")" << endl;
 	cout << "Account Number: " << originalAccount->getAccountNumber() << endl;
-	cout << "Account Balance: " << originalAccount->getBalance() << endl;
+	cout << "Account Balance: " << fixed << setprecision(2) << originalAccount->getBalance() << endl;
 	cout << "==========================" << endl;
 }
 

@@ -2,8 +2,6 @@
 
 #include "Account.h"
 #include "Person.h"
-#include "Transfer.h"
-#include "Database.h"
 #include "BankManager.h"
 
 using namespace std;
@@ -37,7 +35,7 @@ int main()
 		cout << "===============================================" << endl;
 		cout << "[1] Login to user." << endl;
 		cout << "[2] Create a new person user." << endl;
-		cout << "[3] Save." << endl;
+		cout << "[3] Save & Quit." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -57,6 +55,7 @@ int main()
 			cout << "Successfully exited program." << endl;
 			return 0;
 		default:
+			cout << "Error: Invalid choice." << endl;
 			break;
 		}
 	}
@@ -83,7 +82,7 @@ void loginUser()
 		userInterface();
 	}
 	else {
-		cout << "Invalid credentials." << endl;
+		cout << "Error: Invalid credentials." << endl;
 	}
 }
 
@@ -91,7 +90,8 @@ void createUser()
 {
 	cout << "Enter your name: ";
 	string name;
-	cin >> name;
+	// Clears garbage left over from the previous input operation (such as \n).
+	getline(cin >> ws, name);
 
 	cout << "Enter your username: ";
 	string username;
@@ -109,14 +109,19 @@ void createUser()
 		return;
 	}
 
-	// NOTE: Deal with the exception handling. 
 	cout << "Enter your age: ";
 	int age;
 	cin >> age;
 
+	if (age < 18)
+	{
+		cout << "Error: Can't create a user account under 18 years old." << endl;
+		return;
+	}
+
 	cout << "Enter your address: ";
 	string address;
-	cin >> address;
+	getline(cin >> ws, address);
 
 	cout << "Enter your password: ";
 	string password;
@@ -126,7 +131,7 @@ void createUser()
 	Account account(person);
 
 	bankManager.addPerson(person);
-	bankManager.addAccount(account); //done
+	bankManager.addAccount(account);
 }
 
 void userInterface()
@@ -140,7 +145,7 @@ void userInterface()
 		cout << "[2] Create an account." << endl;
 		cout << "[3] Delete an account." << endl;
 		cout << "[4] Print information." << endl;
-		cout << "[5] Save." << endl;
+		cout << "[5] Save & Quit." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -163,6 +168,7 @@ void userInterface()
 			cout << "Successfully logined out." << endl;
 			return;
 		default:
+			cout << "Error: Invalid choice." << endl;
 			break;
 		}
 	}
@@ -223,7 +229,7 @@ void accountsInterface()
 		cout << "[3] Transfer an amount." << endl;
 		cout << "[4] Print an invoice." << endl;
 		cout << "[5] Print information." << endl;
-		cout << "[6] Save." << endl;
+		cout << "[6] Save & Quit." << endl;
 		cout << "Enter your choice: ";
 		int choice;
 		cin >> choice;
@@ -249,6 +255,7 @@ void accountsInterface()
 			cout << "Successfully logined out." << endl;
 			return;
 		default:
+			cout << "Error: Invalid choice." << endl;
 			break;
 		}
 	}

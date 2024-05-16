@@ -10,8 +10,8 @@ The system is written in C++ and applies the OOP paradigm in the code using conc
 Some of the features the system provides are: 
 
 - Text User Interface for interacting with the system (TUI)
-- User creation (up to 5,000 comfortably).
-- Multi-account creation (up to 5,000 comfortably).
+- User creation (up to 25,000 comfortably).
+- Multi-account creation (up to 25,000 comfortably).
 - Deposit, transfer, and withdraw transactions.
 - Invoice listing all transactions in an account session.
 - Database system for saving all records offline.
