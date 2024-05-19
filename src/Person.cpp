@@ -61,8 +61,7 @@ void Person::setAge(int age)
 		this->age = age;
 	}
 	else {
-		cout << "Error: Invalid age. Must be 18 at least to be registered in the bank." << endl;
-		assert(false);
+		cout << "[!] Error: Invalid age. Must be 18 at least to be registered in the bank." << endl;
 	}
 }
 

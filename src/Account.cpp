@@ -49,20 +49,20 @@ void Account::deposit(double amount)
 {
 	if (amount > 0) {
 		balance += amount;
-		cout << "Deposit Successful. Current Balance: " << balance << " L.E." << endl;
+		cout << "[!] Deposit Successful. Current Balance: " << balance << " L.E." << endl;
 	}
 	else {
-		cout << "Error: Invalid Deposit Amount." << endl;
+		cout << "[!] Error: Invalid Deposit Amount." << endl;
 	}
 }
 
 void Account::withdraw(double amount) {
 	if (amount >= 0 && amount <= balance) {
 		balance -= amount;
-		cout << "Withdrawal Successful. Current Balance: " << balance << " L.E." << "\n";
+		cout << "[!] Withdrawal Successful. Current Balance: " << balance << " L.E." << "\n";
 	}
 	else {
-		cout << "Wrong Withdrawal Amount / Insufficient Funds." << endl;
+		cout << "[!] Error: Wrong Withdrawal Amount / Insufficient Funds." << endl;
 	}
 }
 
@@ -70,6 +70,9 @@ void Account::transfer(Account* account, double amount)
 {
 	this->withdraw(amount);
 	account->deposit(amount);
+
+	// Error checking for this one incase withdraw or deposit don't work.
+	cout << "[!] Transfer Successful. Current Balance: " << balance << " L.E." << "\n";
 }
 
 // Generates an new random account number.

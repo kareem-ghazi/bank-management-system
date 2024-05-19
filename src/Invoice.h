@@ -1,11 +1,12 @@
 #ifndef INVOICE_H
 #define INVOICE_H
 
-#include <vector>
 #include "Account.h"
 #include "Deposit.h"
 #include "Withdraw.h"
 #include "Transfer.h"
+
+#include <vector>
 
 class Invoice
 {

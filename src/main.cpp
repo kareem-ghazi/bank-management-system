@@ -1,4 +1,4 @@
-#include <iostream>
+﻿#include <iostream>
 
 #include "Account.h"
 #include "Person.h"
@@ -25,18 +25,21 @@ void withdraw();
 void transfer();
 void printInvoice();
 void printAccountInformation();
+void printForeignRates();
 
 int main()
 {
 	while (true)
 	{
-		cout << "===============================================" << endl;
-		cout << "- Bank Management System: ta3bneen feh wallah -" << endl;
-		cout << "===============================================" << endl;
+		cout << "=====================================" << endl;
+		cout << "       BANK MANAGEMENT SYSTEM" << endl;
+		cout << "            [MAIN MENU]" << endl;
+		cout << "=====================================" << endl;
 		cout << "[1] Login to user." << endl;
 		cout << "[2] Create a new person user." << endl;
 		cout << "[3] Save & Quit." << endl;
-		cout << "Enter your choice: ";
+		cout << "=====================================" << endl;
+		cout << "Enter your choice (1 - 3): ";
 		int choice;
 		cin >> choice;
 
@@ -52,10 +55,10 @@ int main()
 			createUser();
 			break;
 		case 3:
-			cout << "Successfully exited program." << endl;
+			cout << "[!] Successfully exited program." << endl;
 			return 0;
 		default:
-			cout << "Error: Invalid choice." << endl;
+			cout << "[!] Error: Invalid choice." << endl;
 			break;
 		}
 	}
@@ -77,12 +80,12 @@ void loginUser()
 
 	if (status)
 	{
-		cout << "Successful login." << endl;
+		cout << "[!] Successful login." << endl;
 		person = bankManager.getPerson(username);
 		userInterface();
 	}
 	else {
-		cout << "Error: Invalid credentials." << endl;
+		cout << "[!] Error: Invalid credentials." << endl;
 	}
 }
 
@@ -99,13 +102,13 @@ void createUser()
 
 	if (bankManager.findUsername(username))
 	{
-		cout << "Error: Username already exists." << endl;
+		cout << "[!] Error: Username already exists." << endl;
 		return;
 	}
 
 	if (username.find(';') != string::npos)
 	{
-		cout << "Error: Semicolon can't be in username." << endl;
+		cout << "[!] Error: Semicolon can't be in username." << endl;
 		return;
 	}
 
@@ -115,7 +118,7 @@ void createUser()
 
 	if (age < 18)
 	{
-		cout << "Error: Can't create a user account under 18 years old." << endl;
+		cout << "[!] Error: Can't create a user account under 18 years old." << endl;
 		return;
 	}
 
@@ -138,15 +141,17 @@ void userInterface()
 {
 	while (true)
 	{
-		cout << "===============================================" << endl;
-		cout << "- Welcome, " << person.getUsername() << ": ta3bneen feh wallah^2 -" << endl;
-		cout << "===============================================" << endl;
+		cout << "=====================================" << endl;
+		cout << "          Welcome, " << person.getUsername() << endl;
+		cout << "             [USER MENU]" << endl;
+		cout << "=====================================" << endl;
 		cout << "[1] Enter an account." << endl;
 		cout << "[2] Create an account." << endl;
 		cout << "[3] Delete an account." << endl;
 		cout << "[4] Print information." << endl;
-		cout << "[5] Save & Quit." << endl;
-		cout << "Enter your choice: ";
+		cout << "[5] Quit." << endl;
+		cout << "=====================================" << endl;
+		cout << "Enter your choice (1 - 5): ";
 		int choice;
 		cin >> choice;
 
@@ -165,10 +170,10 @@ void userInterface()
 			printPersonInformation();
 			break;
 		case 5:
-			cout << "Successfully logined out." << endl;
+			cout << "[!] Successfully logined out." << endl;
 			return;
 		default:
-			cout << "Error: Invalid choice." << endl;
+			cout << "[!] Error: Invalid choice." << endl;
 			break;
 		}
 	}
@@ -221,16 +226,20 @@ void accountsInterface()
 {
 	while (true)
 	{
-		cout << "===============================================" << endl;
-		cout << "- Accounts Interface: " << account.getOwner().getUsername() << ": ta3bneen feh wallah^3 -" << endl;
-		cout << "===============================================" << endl;
+		cout << "=====================================" << endl;
+		cout << "          Welcome, " << person.getUsername() << endl;
+		cout << " Account Number: (" << account.getAccountNumber() << ")" << endl;
+		cout << "            [ACCOUNT MENU]" << endl;
+		cout << "=====================================" << endl;
 		cout << "[1] Deposit an amount." << endl;
 		cout << "[2] Withdraw an amount." << endl;
 		cout << "[3] Transfer an amount." << endl;
 		cout << "[4] Print an invoice." << endl;
 		cout << "[5] Print information." << endl;
-		cout << "[6] Save & Quit." << endl;
-		cout << "Enter your choice: ";
+		cout << "[6] Check foreign rate for a currency." << endl;
+		cout << "[7] Quit." << endl;
+		cout << "=====================================" << endl;
+		cout << "Enter your choice (1 - 7): ";
 		int choice;
 		cin >> choice;
 
@@ -252,10 +261,13 @@ void accountsInterface()
 			printAccountInformation();
 			break;
 		case 6:
-			cout << "Successfully logined out." << endl;
+			printForeignRates();
+			break;
+		case 7:
+			cout << "[!] Successfully logined out." << endl;
 			return;
 		default:
-			cout << "Error: Invalid choice." << endl;
+			cout << "[!] Error: Invalid choice." << endl;
 			break;
 		}
 	}
@@ -313,4 +325,30 @@ void printAccountInformation()
 void printPersonInformation()
 {
 	bankManager.printInformation(person);
+}
+
+void printForeignRates()
+{
+	cout << endl << "[1] Dollar (USD)" << endl;
+	cout << "[2] Egyptian Pound (EGP)" << endl;
+	cout << "[3] Euro (EUR)" << endl;
+	cout << "[4] Riyal (SAR)" << endl;
+	cout << "[5] Great British Pound (GBP)" << endl;
+	cout << "[6] Chinese Yuan (CNY)" << endl;
+	
+	cout << "Enter a choice (1 - 6): ";
+	int inputCurrency;
+	cin >> inputCurrency;
+
+	cout << "Enter an amount of the chosen currency: ";
+	double amount;
+	cin >> amount;
+
+	if (amount <= 0)
+	{
+		cout << "[!] Error: Invalid amount." << endl;
+		return;
+	}
+
+	bankManager.printForeignRates(inputCurrency, amount);
 }

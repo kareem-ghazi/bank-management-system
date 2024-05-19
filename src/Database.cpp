@@ -21,41 +21,41 @@ Database::~Database()
 }
 
 // Encrypts the passed string (usually a password).
-string Database::pasEncrypt(string pas)
+string Database::encrypt(string phrase)
 {
-	int stringSize = pas.size();
+	int stringSize = phrase.size();
 
 	for (int i = 0; i < stringSize; i++)
 	{
-		if (pas[i] == '4')
+		if (phrase[i] == '4')
 		{
-			pas[i] = '&';
+			phrase[i] = '&';
 		}
 		else {
-			pas[i] = pas[i] + 7;
+			phrase[i] = phrase[i] + 7;
 		}
 	}
 
-	return pas;
-}   //unlinked
+	return phrase;
+}
 
 // Decrypts the passed string (usually a password).
-string Database::pasDecrypt(string pas)
+string Database::decrypt(string phrase)
 {
-	int stringSize = pas.size();
+	int stringSize = phrase.size();
 
 	for (int i = 0; i < stringSize; i++)
 	{
-		if (pas[i] == '&')
+		if (phrase[i] == '&')
 		{
-			pas[i] = '4';
+			phrase[i] = '4';
 		}
 		else {
-			pas[i] = pas[i] - 7;
+			phrase[i] = phrase[i] - 7;
 		}
 	}
 
-	return pas;  //unlinked
+	return phrase;
 }
 
 // Adds an account to the database.
@@ -100,9 +100,6 @@ void Database::load()
 		string password;
 		int age;
 
-		// idea: links line number to account number
-		// idea: pointers to vectors
-		// SEMICOLON CHANGE
 		int comma = line.find(';');
 		name = line.substr(0, comma);
 		line.erase(0, comma + 1);
@@ -116,7 +113,7 @@ void Database::load()
 		line.erase(0, comma + 1);
 
 		comma = line.find(';');
-		password = pasDecrypt(line.substr(0, comma));
+		password = decrypt(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
 		comma = line.find(';');
@@ -150,7 +147,7 @@ void Database::save()
 		outputFile << accounts[i].getOwner().getName() << ";"
 			<< accounts[i].getOwner().getUsername() << ";"
 			<< accounts[i].getOwner().getAddress() << ";"
-			<< pasEncrypt(accounts[i].getOwner().getPassword()) << ";"
+			<< encrypt(accounts[i].getOwner().getPassword()) << ";"
 			<< accounts[i].getOwner().getAge() << ";"
 			<< accounts[i].getAccountNumber() << ";"
 			<< accounts[i].getBalance() << endl;

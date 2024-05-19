@@ -10,25 +10,25 @@
   <Class Name="BankManager">
     <Position X="21.75" Y="2.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAwBQCQAABAAAgBQRgAIAAAggIEABAIAQAJAAgAAEIA=</HashCode>
+      <HashCode>AAwBQAQAAAAEAABAQAAAAAAggAEABAIAQAIAAgAAEIA=</HashCode>
       <FileName>src\BankManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Database">
-    <Position X="21.75" Y="9.25" Width="2.75" />
+    <Position X="21.75" Y="7.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AIACgAAACMCAAABAAAAAAACIAIAAAAAAQAAAAAAAAoA=</HashCode>
+      <HashCode>AAACgAEACMCAAABAAAAAEACIAIAAAAAAQAAAAAAAAoA=</HashCode>
       <FileName>src\Database.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Deposit">
-    <Position X="16" Y="5.5" Width="2" />
+    <Position X="16" Y="5.5" Width="2.25" />
     <InheritanceLine Type="Transaction" ManuallyRouted="true">
       <Path>
         <Point X="14.75" Y="4.824" />
         <Point X="14.75" Y="5.117" />
-        <Point X="17" Y="5.117" />
-        <Point X="17" Y="5.5" />
+        <Point X="17.125" Y="5.117" />
+        <Point X="17.125" Y="5.5" />
       </Path>
     </InheritanceLine>
     <TypeIdentifier>

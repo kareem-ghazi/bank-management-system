@@ -1,12 +1,13 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
+#include "Account.h"
+#include "Person.h"
+
 #include <iostream>
 #include <fstream>
 #include <string>
 #include <vector>
-#include "Account.h"
-#include "Person.h"
 
 using namespace std;
 
@@ -23,8 +24,8 @@ public:
 	Database();
 	~Database();
 
-	string pasEncrypt(string pas);
-	string pasDecrypt(string pas);
+	string encrypt(string phrase);
+	string decrypt(string phrase);
 
 	void addEntry(Account account);
 	void addEntry(Person person);

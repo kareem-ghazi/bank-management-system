@@ -22,7 +22,6 @@ void Deposit::setAmount(double amount)
 		this->amount = amount;
 	}
 	else {
-		cout << "Error: Invalid amount for depositing." << endl;
-		//assert(false);
+		cout << "[!] Error: Invalid amount for depositing." << endl;
 	}
 }

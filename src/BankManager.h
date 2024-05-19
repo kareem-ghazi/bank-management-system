@@ -8,34 +8,21 @@
 #include "Withdraw.h"
 #include "Transfer.h"
 #include "Account.h"
+#include "Person.h"
 
 #include <iostream>
 #include <iomanip>
 
 using namespace std;
 
-// converts currency
-// accesses accounts (including transactions for each one)
-// adds accounts & removes accounts
-// manages database
-
-// FOR FARIS: Transfer from account to account
-// passing object inside parameter
 class BankManager
 {
 private:
 	Invoice invoice;
 	Database database;
-	int num;
-	int currency;
-	double Dollar, Riyal, Euro, Dinar, Pound;
-	int termenator = 0;
 
 public:
 	BankManager();
-
-	void setvalue();
-	double result();
 
 	bool findUsername(string username);
 	bool login(string name, string pas);
@@ -57,6 +44,8 @@ public:
 	void deposit(Account account, double amount);
 	void withdraw(Account account, double amount);
 	void transfer(Account accountFrom, Account accountTo, double amount);
+
+	void printForeignRates(int inputCurrency, double amount);
 };
 
 #endif

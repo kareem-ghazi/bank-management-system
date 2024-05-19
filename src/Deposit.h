@@ -1,9 +1,10 @@
 #ifndef DEPOSIT_H
 #define DEPOSIT_H
 
-#include <iostream>
 #include "Transaction.h"
 #include "Account.h"
+
+#include <iostream>
 
 class Deposit : public Transaction
 {
