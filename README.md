@@ -18,7 +18,12 @@ Some of the features the system provides are:
 - Password encryption.
 
 
-## Screenshots
+## Screenshots & Diagrams
+
+**Screenshots** from the program for the three menus available.
+- ![](imgs/1.png)
+- ![](imgs/2.png)
+- ![](imgs/3.png)
 
 **Unified Modeling Language** (UML) diagram for the project.
 
@@ -30,11 +35,14 @@ Some of the features the system provides are:
 
 ## Installation
 
-Install [bank-management-system](https://github.com/kareem-ghazi/bank-management-system) with bash
+- Clone and build [bank-management-system](https://github.com/kareem-ghazi/bank-management-system) with bash
 
 ```bash
   git clone https://github.com/kareem-ghazi/bank-management-system.git
 ```
+
+OR
+- Download the latest [release](https://github.com/kareem-ghazi/bank-management-system/releases/tag/v1.0) from the releases tab.
     
 ## Authors
 
