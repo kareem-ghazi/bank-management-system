@@ -5,7 +5,7 @@ A bank management system that includes a login screen for accessing accounts and
 
 ## Features
 
-The system is written in C++ and applies the OOP paradigm in the code using concepts like Encapsulation, Inheritance, and Polymorphism. The program also uses pointers for some parts to utilize the heap memory and offload heavy objects to there.
+The system is written in C++ and applies the OOP paradigm in the code using concepts like Encapsulation, Inheritance, and Polymorphism. The program also uses pointers for some parts in the program to allow for the editing of bank accounts.
 
 Some of the features the system provides are: 
 
@@ -35,7 +35,7 @@ Some of the features the system provides are:
 
 ## Installation
 
-- Clone and build [bank-management-system](https://github.com/kareem-ghazi/bank-management-system) with bash
+- Clone and build [bank-management-system](https://github.com/kareem-ghazi/bank-management-system) with bash.
 
 ```bash
   git clone https://github.com/kareem-ghazi/bank-management-system.git
