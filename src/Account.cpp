@@ -49,13 +49,11 @@ double Account::getBalance() const {
 // Returns the status of the deposit (success or fail).
 bool Account::deposit(double amount)
 {
-	if (amount > 0) {
+	if (amount > 100) {
 		balance += amount;
-		cout << "[!] Deposit Successful. Current Balance: " << balance << " L.E." << endl;
 		return true;
 	}
 	else {
-		cout << "[!] Error: Invalid Deposit Amount." << endl;
 		return false;
 	}
 }
@@ -63,13 +61,11 @@ bool Account::deposit(double amount)
 // Withdraws an amount of money from the account.
 // Returns the status of the withdrawal (success or fail).
 bool Account::withdraw(double amount) {
-	if (amount >= 0 && amount <= balance) {
+	if (amount > 0 && amount <= balance) {
 		balance -= amount;
-		cout << "[!] Withdrawal Successful. Current Balance: " << balance << " L.E." << endl;
 		return true;
 	}
 	else {
-		cout << "[!] Error: Wrong Withdrawal Amount / Insufficient Funds." << endl;
 		return false;
 	}
 }
@@ -78,16 +74,11 @@ bool Account::withdraw(double amount) {
 // Returns the status of the transfer (success or fail).
 bool Account::transfer(Account* account, double amount)
 {
-	bool withdrawStatus = this->withdraw(amount);
-	
-	if (withdrawStatus)
+	if (this->withdraw(amount) && account->deposit(amount))
 	{
-		account->deposit(amount);
-		cout << "[!] Transfer Successful. Current Balance: " << balance << " L.E." << endl;
 		return true;
 	}
 	else {
-		cout << "[!] Transfer Failed." << endl;
 		return false;
 	}
 }

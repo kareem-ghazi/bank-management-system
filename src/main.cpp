@@ -34,7 +34,7 @@ int main()
 	{
 		cout << "=====================================" << endl;
 		cout << "       BANK MANAGEMENT SYSTEM" << endl;
-		cout << "            [MAIN MENU]" << endl;
+		cout << "             [MAIN MENU]" << endl;
 		cout << "=====================================" << endl;
 		cout << "[1] Login to user." << endl;
 		cout << "[2] Create a new person user." << endl;
@@ -117,6 +117,7 @@ void createUser()
 		return;
 	}
 
+	// The .find() returns npos (which means null position) if it couldn't find the character.
 	if (username.find(';') != string::npos)
 	{
 		cout << "[!] Error: Semicolon can't be in username." << endl;
@@ -370,8 +371,9 @@ void printForeignRates()
 	cout << "[4] Riyal (SAR)" << endl;
 	cout << "[5] Great British Pound (GBP)" << endl;
 	cout << "[6] Chinese Yuan (CNY)" << endl;
+	cout << "[7] Kuwaiti Dinar (KWD)" << endl;
 	
-	cout << "Enter a choice (1 - 6): ";
+	cout << "Enter a choice (1 - 7): ";
 	int inputCurrency;
 	cin >> inputCurrency;
 

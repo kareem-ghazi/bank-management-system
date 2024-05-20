@@ -167,9 +167,14 @@ void BankManager::deposit(Account account, double amount)
 	deposit.setDate(getDate());
 
 	bool status = originalAccount->deposit(amount);
+	
 	if (status)
 	{
+		cout << "[!] Deposit Successful. Current Balance: " << originalAccount->getBalance() << " L.E." << endl;
 		invoice.addTransaction(deposit);
+	}
+	else {
+		cout << "[!] Error: Invalid Deposit Amount. You need at least 100 L.E. in order to deposit." << endl;
 	}
 }
 
@@ -183,9 +188,14 @@ void BankManager::withdraw(Account account, double amount)
 	withdraw.setDate(getDate());
 
 	bool status = originalAccount->withdraw(amount);
+	
 	if (status)
 	{
+		cout << "[!] Withdrawal Successful. Current Balance: " << originalAccount->getBalance() << " L.E." << endl;
 		invoice.addTransaction(withdraw);
+	}
+	else {
+		cout << "[!] Error: Wrong Withdrawal Amount / Insufficient Funds." << endl;
 	}
 }
 
@@ -195,6 +205,13 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 	Account* originalAccountFrom = database.getAccount(accountFrom.getAccountNumber());
 	Account* originalAccountTo = database.getAccount(accountTo.getAccountNumber());
 
+	// If the account doesn't exist, don't proceed.
+	if (accountTo.getOwner().getUsername() == "")
+	{
+		cout << "[!] Error: The account doesn't exist." << endl;
+		return;
+	}
+
 	Transfer transfer(accountFrom, accountTo);
 	transfer.setAmount(amount);
 	transfer.setDate(getDate());
@@ -202,7 +219,11 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 	bool status = originalAccountFrom->transfer(originalAccountTo, amount);
 	if (status)
 	{
+		cout << "[!] Transfer Successful. Current Balance: " << originalAccountTo->getBalance() << " L.E." << endl;
 		invoice.addTransaction(transfer);
+	}
+	else {
+		cout << "[!] Transfer failed." << endl;
 	}
 }
 
@@ -259,7 +280,16 @@ void BankManager::printInvoice(Account account)
 void BankManager::printForeignRates(int inputCurrency, double amount)
 {
 	cout << endl;
-
+	
+	/*
+	* [1] Dollar (USD)
+	* [2] Egyptian Pound (EGP)
+	* [3] Euro (EUR)
+	* [4] Riyal (SAR)
+	* [5] Great British Pound (GBP)
+	* [6] Chinese Yuan (CNY)
+	* [7] Kuwaiti Dinar (KWD)
+	*/
 	switch (inputCurrency)
 	{
 	case 1:
@@ -271,6 +301,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "RIYAL: " << amount * 3.75 << " SAR" << endl;
 		cout << "POUND: " << amount * 0.79 << " GBP" << endl;
 		cout << "YUAN: " << amount * 7.22 << " CNY" << endl;
+		cout << "DINAR: " << amount * 0.31 << " KWD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	case 2:
@@ -282,6 +313,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "RIYAL: " << amount * 0.08 << " SAR" << endl;
 		cout << "POUND: " << amount * 0.017 << " GBP" << endl;
 		cout << "YUAN: " << amount * 0.15 << " CNY" << endl;
+		cout << "DINAR: " << amount * 0.0066 << " KWD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	case 3:
@@ -293,6 +325,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "RIYAL: " << amount * 4.08 << " SAR" << endl;
 		cout << "POUND: " << amount * 0.86 << " GBP" << endl;
 		cout << "YUAN: " << amount * 7.86 << " CNY" << endl;
+		cout << "DINAR: " << amount * 0.33 << " KWD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	case 4:
@@ -304,6 +337,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "DOLLAR: " << amount * 0.27 << " USD" << endl;
 		cout << "POUND: " << amount * 0.21 << " GBP" << endl;
 		cout << "YUAN: " << amount * 1.93 << " CNY" << endl;
+		cout << "DINAR: " << amount * 0.082 << " KWD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	case 5:
@@ -315,6 +349,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "RIYAL: " << amount * 4.75 << " SAR" << endl;
 		cout << "DOLLAR: " << amount * 1.27 << " USD" << endl;
 		cout << "YUAN: " << amount * 9.15 << " CNY" << endl;
+		cout << "DINAR: " << amount * 0.39 << " KWD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	case 6:
@@ -326,6 +361,19 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "RIYAL: " << amount * 0.53 << " SAR" << endl;
 		cout << "POUND: " << amount * 0.11 << " GBP" << endl;
 		cout << "DOLLAR: " << amount * 0.14 << " USD" << endl;
+		cout << "DINAR: " << amount * 0.042 << " KWD" << endl;
+		cout << "=====================================" << endl;
+		break;
+	case 7:
+		cout << "=====================================" << endl;
+		cout << "Your entered amount is: " << amount << " KWD" << endl;
+		cout << "=====================================" << endl;
+		cout << "EGP: " << amount * 151.97 << " L.E." << endl;
+		cout << "EURO: " << amount * 3 << " EUR" << endl;
+		cout << "RIYAL: " << amount * 12.22 << " SAR" << endl;
+		cout << "POUND: " << amount * 2.57 << " GBP" << endl;
+		cout << "YUAN: " << amount * 23.56 << " CNY" << endl;
+		cout << "DOLLAR: " << amount * 3.26 << " USD" << endl;
 		cout << "=====================================" << endl;
 		break;
 	default:
