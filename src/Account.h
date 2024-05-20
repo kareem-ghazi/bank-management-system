@@ -25,9 +25,9 @@ public:
 	long long getAccountNumber() const;
 	double getBalance() const;
 
-	void deposit(double amount);
-	void withdraw(double amount);
-	void transfer(Account* account, double amount);
+	bool deposit(double amount);
+	bool withdraw(double amount);
+	bool transfer(Account* account, double amount);
 };
 
 #endif

@@ -45,34 +45,51 @@ double Account::getBalance() const {
 	return balance;
 }
 
-void Account::deposit(double amount)
+// Deposits an amount of money to the account.
+// Returns the status of the deposit (success or fail).
+bool Account::deposit(double amount)
 {
 	if (amount > 0) {
 		balance += amount;
 		cout << "[!] Deposit Successful. Current Balance: " << balance << " L.E." << endl;
+		return true;
 	}
 	else {
 		cout << "[!] Error: Invalid Deposit Amount." << endl;
+		return false;
 	}
 }
 
-void Account::withdraw(double amount) {
+// Withdraws an amount of money from the account.
+// Returns the status of the withdrawal (success or fail).
+bool Account::withdraw(double amount) {
 	if (amount >= 0 && amount <= balance) {
 		balance -= amount;
-		cout << "[!] Withdrawal Successful. Current Balance: " << balance << " L.E." << "\n";
+		cout << "[!] Withdrawal Successful. Current Balance: " << balance << " L.E." << endl;
+		return true;
 	}
 	else {
 		cout << "[!] Error: Wrong Withdrawal Amount / Insufficient Funds." << endl;
+		return false;
 	}
 }
 
-void Account::transfer(Account* account, double amount)
+// Transfers an amount of money from this account to another one.
+// Returns the status of the transfer (success or fail).
+bool Account::transfer(Account* account, double amount)
 {
-	this->withdraw(amount);
-	account->deposit(amount);
-
-	// Error checking for this one incase withdraw or deposit don't work.
-	cout << "[!] Transfer Successful. Current Balance: " << balance << " L.E." << "\n";
+	bool withdrawStatus = this->withdraw(amount);
+	
+	if (withdrawStatus)
+	{
+		account->deposit(amount);
+		cout << "[!] Transfer Successful. Current Balance: " << balance << " L.E." << endl;
+		return true;
+	}
+	else {
+		cout << "[!] Transfer Failed." << endl;
+		return false;
+	}
 }
 
 // Generates an new random account number.

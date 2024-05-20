@@ -1,5 +1,6 @@
 #include "BankManager.h"
 
+// Empty constructor.
 BankManager::BankManager()
 {
 
@@ -89,6 +90,7 @@ vector<Account> BankManager::getAccountsOf(Person person) const
 	return accountsOf;
 }
 
+// Returns the number of accounts a single person has.
 int BankManager::getNumberOfAccounts(Person person) const
 {
 	vector<Account> accounts = database.getAccounts();
@@ -106,37 +108,40 @@ int BankManager::getNumberOfAccounts(Person person) const
 	return count;
 }
 
+// Prints the information of an account in the database.
 void BankManager::printInformation(Account account)
 {
 	Account* originalAccount = database.getAccount(account.getAccountNumber());
 
 	cout << endl;
 
-	cout << "==========================" << endl;
+	cout << "=====================================" << endl;
 	cout << "Account Owner: " << originalAccount->getOwner().getName()
 		<< " (" << originalAccount->getOwner().getUsername() << ")" << endl;
 	cout << "Account Number: " << originalAccount->getAccountNumber() << endl;
 	cout << "Account Balance: " << fixed << setprecision(2) << originalAccount->getBalance() << endl;
-	cout << "==========================" << endl;
+	cout << "=====================================" << endl;
 
 	cout << endl;
 }
 
+// Prints the information of a person.
 void BankManager::printInformation(Person person)
 {
 	cout << endl;
 
-	cout << "==========================" << endl;
+	cout << "=====================================" << endl;
 	cout << "Name: " << person.getName() << endl;
 	cout << "Username: " << person.getUsername() << endl;
 	cout << "Age: " << person.getAge() << endl;
 	cout << "Address: " << person.getAddress() << endl;
 	cout << "Owned Accounts: " << getNumberOfAccounts(person) << endl;
-	cout << "==========================" << endl;
+	cout << "=====================================" << endl;
 
 	cout << endl;
 }
 
+// Checks whether a username exists in the database or not.
 bool BankManager::findUsername(string username)
 {
 	vector<Person> people = database.getPeople();
@@ -152,28 +157,39 @@ bool BankManager::findUsername(string username)
 	return false;
 }
 
+// Deposits an amount of money to an account in the database.
 void BankManager::deposit(Account account, double amount)
 {
 	Account* originalAccount = database.getAccount(account.getAccountNumber());
 
 	Deposit deposit(*originalAccount);
 	deposit.setAmount(amount);
+	deposit.setDate(getDate());
 
-	originalAccount->deposit(amount);
-	invoice.addTransaction(deposit);
+	bool status = originalAccount->deposit(amount);
+	if (status)
+	{
+		invoice.addTransaction(deposit);
+	}
 }
 
+// Withdraws an amount of money from an account in the database.
 void BankManager::withdraw(Account account, double amount)
 {
 	Account* originalAccount = database.getAccount(account.getAccountNumber());
 
 	Withdraw withdraw(*originalAccount);
 	withdraw.setAmount(amount);
+	withdraw.setDate(getDate());
 
-	originalAccount->withdraw(amount);
-	invoice.addTransaction(withdraw);
+	bool status = originalAccount->withdraw(amount);
+	if (status)
+	{
+		invoice.addTransaction(withdraw);
+	}
 }
 
+// Transfers an amount of money from an account to another account in the database.
 void BankManager::transfer(Account accountFrom, Account accountTo, double amount)
 {
 	Account* originalAccountFrom = database.getAccount(accountFrom.getAccountNumber());
@@ -181,35 +197,49 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 
 	Transfer transfer(accountFrom, accountTo);
 	transfer.setAmount(amount);
+	transfer.setDate(getDate());
 
-	originalAccountFrom->transfer(originalAccountTo, amount);
-	invoice.addTransaction(transfer);
+	bool status = originalAccountFrom->transfer(originalAccountTo, amount);
+	if (status)
+	{
+		invoice.addTransaction(transfer);
+	}
 }
 
+// Clears the invoice.
 void BankManager::clearInvoice()
 {
 	invoice.clearTransactions();
 }
 
+// Prints the invoice if it is not empty with all the transactions made.
 void BankManager::printInvoice(Account account)
 {
 	vector<Deposit> deposits = invoice.getDeposits();
 	vector<Withdraw> withdraws = invoice.getWithdraws();
 	vector<Transfer> transfers = invoice.getTransfers();
 
+	if (deposits.size() == 0 && withdraws.size() == 0 && transfers.size() == 0)
+	{
+		cout << "[!] Error: No invoice exists for this current login session." << endl;
+		return;
+	}
+
 	int count = 1;
 
-	cout << endl << "===========================" << endl;
+	cout << "=====================================" << endl;
 
 	for (int i = 0; i < deposits.size(); i++, count++)
 	{
 		cout << "Transaction #" << count << ": " << "(DEPOSIT)" << endl;
+		cout << "Date: " << deposits[i].getDate() << endl;
 		cout << "Amount: " << deposits[i].getAmount() << endl << endl;
 	}
 
 	for (int i = 0; i < withdraws.size(); i++, count++)
 	{
 		cout << "Transaction #" << count << ": " << "(WITHDRAW)" << endl;
+		cout << "Date: " << withdraws[i].getDate() << endl;
 		cout << "Amount: " << withdraws[i].getAmount() << endl << endl;
 	}
 
@@ -218,12 +248,14 @@ void BankManager::printInvoice(Account account)
 		cout << "Transaction #" << count << ": " << "(TRANSFER)" << endl;
 		cout << transfers[i].getAccountFrom().getOwner().getUsername() << " >>>> "
 			<< transfers[i].getAccountTo().getOwner().getUsername() << endl;
+		cout << "Date: " << transfers[i].getDate() << endl;
 		cout << "Amount: " << transfers[i].getAmount() << endl;
 	}
 
-	cout << "===========================" << endl << endl;
+	cout << "=====================================" << endl;
 }
 
+// Checks the foreign currency rates for a given currency and an amount of it.
 void BankManager::printForeignRates(int inputCurrency, double amount)
 {
 	cout << endl;
@@ -232,7 +264,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 	{
 	case 1:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " USD" << endl;
+		cout << "Your entered amount is: " << amount << " USD" << endl;
 		cout << "=====================================" << endl;
 		cout << "EGP: " << amount * 46.91 << " L.E." << endl;
 		cout << "EURO: " << amount * 0.92 << " EUR" << endl;
@@ -243,7 +275,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		break;
 	case 2:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " L.E." << endl;
+		cout << "Your entered amount is: " << amount << " L.E." << endl;
 		cout << "=====================================" << endl;
 		cout << "DOLLAR: " << amount * 0.021 << " USD" << endl;
 		cout << "EURO: " << amount * 0.020 << " EUR" << endl;
@@ -254,7 +286,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		break;
 	case 3:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " EUR" << endl;
+		cout << "Your entered amount is: " << amount << " EUR" << endl;
 		cout << "=====================================" << endl;
 		cout << "EGP: " << amount * 50.91 << " L.E." << endl;
 		cout << "DOLLAR: " << amount * 1.09 << " USD" << endl;
@@ -265,7 +297,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		break;
 	case 4:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " SAR" << endl;
+		cout << "Your entered amount is: " << amount << " SAR" << endl;
 		cout << "=====================================" << endl;
 		cout << "EGP: " << amount * 12.48 << " L.E." << endl;
 		cout << "EURO: " << amount * 0.24 << " EUR" << endl;
@@ -276,7 +308,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		break;
 	case 5:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " GBP" << endl;
+		cout << "Your entered amount is: " << amount << " GBP" << endl;
 		cout << "=====================================" << endl;
 		cout << "EGP: " << amount * 59.29 << " L.E." << endl;
 		cout << "EURO: " << amount * 1.16 << " EUR" << endl;
@@ -287,7 +319,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		break;
 	case 6:
 		cout << "=====================================" << endl;
-		cout << "Your entered amount is: $" << amount << " CNY" << endl;
+		cout << "Your entered amount is: " << amount << " CNY" << endl;
 		cout << "=====================================" << endl;
 		cout << "EGP: " << amount * 6.6 << " L.E." << endl;
 		cout << "EURO: " << amount * 0.13 << " EUR" << endl;
@@ -302,6 +334,27 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 	}
 
 	cout << endl;
+}
+
+// Returns the current date using the ctime function from the <ctime> library.
+string BankManager::getDate()
+{
+	// Store the current time into time_t (an arithmetic type used for storage of time).
+	// Reference: https://en.cppreference.com/w/c/chrono/time_t
+	time_t now = time(0);
+
+	char dateChar[50];
+	// Simply converts the original time_t variable into a character array along with its size.
+	// Reference: https://en.cppreference.com/w/c/chrono/ctime
+	ctime_s(dateChar, 50, &now);
+
+	// Converting the character array into a string.
+	// NOTE: It seems like the ctime function adds a '\n' character at the end of the character array.
+	// The current workaround is to remove it from the end of the string.
+	string date(dateChar);
+	date[date.size() - 1] = ' ';
+
+	return date;
 }
 
 

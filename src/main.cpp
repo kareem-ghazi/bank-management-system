@@ -29,6 +29,7 @@ void printForeignRates();
 
 int main()
 {
+	// Contains the main menu of the program.
 	while (true)
 	{
 		cout << "=====================================" << endl;
@@ -40,11 +41,18 @@ int main()
 		cout << "[3] Save & Quit." << endl;
 		cout << "=====================================" << endl;
 		cout << "Enter your choice (1 - 3): ";
-		int choice;
-		cin >> choice;
 
-		// ERROR: Putting any characters in the choice breaks the program. 
-		// Must check that it is integer.
+		int choice = 0;
+		cin >> choice;
+		
+		// If the cin fails (input isn't an integer),
+		// reset the fail flag of the cin and ignore the rest of the input.
+		// Reference: https://en.cppreference.com/w/cpp/io/basic_ios/fail 
+		if (cin.fail())
+		{
+			cin.clear(); // Reset fail flag.
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Clear the bad input up to the last enter pressed ('\n').
+		}
 
 		switch (choice)
 		{
@@ -66,6 +74,7 @@ int main()
 	return 0;
 }
 
+// Logins the user into a user account.
 void loginUser()
 {
 	cout << "Enter your username: ";
@@ -77,7 +86,7 @@ void loginUser()
 	cin >> password;
 
 	bool status = bankManager.login(username, password);
-
+	
 	if (status)
 	{
 		cout << "[!] Successful login." << endl;
@@ -89,11 +98,13 @@ void loginUser()
 	}
 }
 
+// Creates a new user account.
 void createUser()
 {
 	cout << "Enter your name: ";
 	string name;
 	// Clears garbage left over from the previous input operation (such as \n).
+	// This is necessary due to the behavior of inputting into an int before a string.
 	getline(cin >> ws, name);
 
 	cout << "Enter your username: ";
@@ -137,6 +148,7 @@ void createUser()
 	bankManager.addAccount(account);
 }
 
+// The user interface for a user account.
 void userInterface()
 {
 	while (true)
@@ -152,8 +164,15 @@ void userInterface()
 		cout << "[5] Quit." << endl;
 		cout << "=====================================" << endl;
 		cout << "Enter your choice (1 - 5): ";
-		int choice;
+		
+		int choice = 0;
 		cin >> choice;
+
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
 
 		switch (choice)
 		{
@@ -179,11 +198,13 @@ void userInterface()
 	}
 }
 
+// Enters a bank account that the user owns.
 void enterAccount()
 {
 	vector<Account> accounts = bankManager.getAccountsOf(person);
 	
 	int i = 0;
+	// Lists all the bank accounts the user has as a menu.
 	for (i = 0; i < accounts.size(); i++)
 	{
 		cout << "[" << i + 1 << "]: " << accounts[i].getAccountNumber() << endl; 
@@ -198,13 +219,18 @@ void enterAccount()
 	accountsInterface();
 }
 
+// Creates a bank account under a user's name.
 void createAccount()
 {
 	Account account(person);
 
+	cout << "[!] Successfully created a new account." << endl;
+	cout << "[!!] Your new account's number is: (" << account.getAccountNumber() << ")" << endl;
+
 	bankManager.addAccount(account);
 }
 
+// Deletes a bank account under a user's name.
 void deleteAccount()
 {
 	vector<Account> accounts = bankManager.getAccountsOf(person);
@@ -222,6 +248,7 @@ void deleteAccount()
 	bankManager.removeAccount(accounts[choice - 1]);
 }
 
+// The accounts interface for a bank account under the logined user.
 void accountsInterface()
 {
 	while (true)
@@ -240,8 +267,15 @@ void accountsInterface()
 		cout << "[7] Quit." << endl;
 		cout << "=====================================" << endl;
 		cout << "Enter your choice (1 - 7): ";
-		int choice;
+		
+		int choice = 0;
 		cin >> choice;
+
+		if (cin.fail())
+		{
+			cin.clear();
+			cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+		}
 
 		switch (choice)
 		{
@@ -273,35 +307,32 @@ void accountsInterface()
 	}
 }
 
+// Deposits an amount of money to a user's bank account.
 void deposit()
 {
 	cout << "Enter amount: ";
 	double amount;
 	cin >> amount;
 
-	// ERROR: Add a limit to the amount.
-
 	bankManager.deposit(account, amount);
 }
 
+// Withdraws an amount of money from a user's bank account.
 void withdraw()
 {
 	cout << "Enter amount: ";
 	double amount;
 	cin >> amount;
 
-	// ERROR: Add a limit to the amount.
-
 	bankManager.withdraw(account, amount);
 }
 
+// Transfers an amount of money from a user's bank account to another user's bank account given an account number.
 void transfer()
 {
 	cout << "Enter amount: ";
 	double amount;
 	cin >> amount;
-
-	// ERROR: Add a limit to the amount.
 
 	cout << "Enter account number that you want to transfer to: ";
 	long long accountNumber;
@@ -312,21 +343,25 @@ void transfer()
 	bankManager.transfer(account, accountTo, amount);
 }
 
+// Prints an invoice listing all the transactions done in a bank account session.
 void printInvoice()
 {
 	bankManager.printInvoice(account);
 }
 
+// Prints the information of a bank account.
 void printAccountInformation()
 {
 	bankManager.printInformation(account);
 }
 
+// Prints the information of a user.
 void printPersonInformation()
 {
 	bankManager.printInformation(person);
 }
 
+// Checks the current foreign rates for a given currency and an amount of it.
 void printForeignRates()
 {
 	cout << endl << "[1] Dollar (USD)" << endl;

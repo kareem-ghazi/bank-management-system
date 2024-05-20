@@ -10,12 +10,12 @@
   <Class Name="BankManager">
     <Position X="21.75" Y="2.5" Width="2.75" />
     <TypeIdentifier>
-      <HashCode>AAwBQAQAAAAEAABAQAAAAAAggAEABAIAQAIAAgAAEIA=</HashCode>
+      <HashCode>AAwBQQQAAAAEAABAQAAAAAAggAEABAIAQAIAAgAAEIA=</HashCode>
       <FileName>src\BankManager.h</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Database">
-    <Position X="21.75" Y="7.5" Width="2.75" />
+    <Position X="21.75" Y="7.75" Width="2.75" />
     <TypeIdentifier>
       <HashCode>AAACgAEACMCAAABAAAAAEACIAIAAAAAAQAAAAAAAAoA=</HashCode>
       <FileName>src\Database.h</FileName>

@@ -12,6 +12,7 @@
 
 #include <iostream>
 #include <iomanip>
+#include <ctime>
 
 using namespace std;
 
@@ -46,6 +47,7 @@ public:
 	void transfer(Account accountFrom, Account accountTo, double amount);
 
 	void printForeignRates(int inputCurrency, double amount);
+	string getDate();
 };
 
 #endif
