@@ -49,6 +49,7 @@ OR
 - [@kareem-ghazi](https://www.github.com/kareem-ghazi)
 - [@Ser5io](https://github.com/Ser5io)
 - [@Dark72234](https://github.com/Dark72234)
+- [@AmrNaderII](https://github.com/AmrNaderII)
 
 ## License
 

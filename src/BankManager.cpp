@@ -212,6 +212,12 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 		return;
 	}
 
+	if (accountFrom.getAccountNumber() == accountTo.getAccountNumber())
+	{
+		cout << "[!] Error: You can't transfer to yourself." << endl;
+		return;
+	}
+
 	Transfer transfer(accountFrom, accountTo);
 	transfer.setAmount(amount);
 	transfer.setDate(getDate());
@@ -219,7 +225,7 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 	bool status = originalAccountFrom->transfer(originalAccountTo, amount);
 	if (status)
 	{
-		cout << "[!] Transfer Successful. Current Balance: " << originalAccountTo->getBalance() << " L.E." << endl;
+		cout << "[!] Transfer Successful. Current Balance: " << originalAccountFrom->getBalance() << " L.E." << endl;
 		invoice.addTransaction(transfer);
 	}
 	else {
@@ -248,7 +254,7 @@ void BankManager::printInvoice(Account account)
 
 	int count = 1;
 
-	cout << "=====================================" << endl;
+	cout << endl << "=====================================" << endl;
 
 	for (int i = 0; i < deposits.size(); i++, count++)
 	{
@@ -267,13 +273,15 @@ void BankManager::printInvoice(Account account)
 	for (int i = 0; i < transfers.size(); i++, count++)
 	{
 		cout << "Transaction #" << count << ": " << "(TRANSFER)" << endl;
-		cout << transfers[i].getAccountFrom().getOwner().getUsername() << " >>>> "
-			<< transfers[i].getAccountTo().getOwner().getUsername() << endl;
+		cout << transfers[i].getAccountFrom().getOwner().getUsername() << " (" 
+			<< transfers[i].getAccountFrom().getAccountNumber() << ")" << " >>>> "
+			<< transfers[i].getAccountTo().getOwner().getUsername() 
+			<< " (" << transfers[i].getAccountTo().getAccountNumber() << ")" << endl;
 		cout << "Date: " << transfers[i].getDate() << endl;
 		cout << "Amount: " << transfers[i].getAmount() << endl;
 	}
 
-	cout << "=====================================" << endl;
+	cout << "=====================================" << endl << endl;
 }
 
 // Checks the foreign currency rates for a given currency and an amount of it.
