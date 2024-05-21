@@ -34,8 +34,8 @@ public:
 	void save();
 
 	vector<Account> getAccounts() const;
-	Account* getAccount(long long accountNumber);
 	vector<Person> getPeople() const;
+	Account* getAccount(long long accountNumber);
 };
 
 #endif

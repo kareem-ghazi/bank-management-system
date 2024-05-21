@@ -26,7 +26,7 @@ public:
 	BankManager();
 
 	bool findUsername(string username);
-	bool login(string name, string pas);
+	bool login(string username, string password);
 
 	void addAccount(Account account);
 	void removeAccount(Account account);

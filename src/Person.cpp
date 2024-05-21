@@ -67,13 +67,7 @@ int Person::getAge() const
 // Sets the age of the person (must be above 18).
 void Person::setAge(int age)
 {
-	if (age >= 18)
-	{
-		this->age = age;
-	}
-	else {
-		cout << "[!] Error: Invalid age. Must be 18 at least to be registered in the bank." << endl;
-	}
+	this->age = age;
 }
 
 

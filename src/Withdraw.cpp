@@ -21,5 +21,11 @@ void Withdraw::setAccount(Account account)
 // Sets the amount to be withdrawn.
 void Withdraw::setAmount(double amount)
 {
+	if (amount <= 0 || amount >= account.getBalance())
+	{
+		cout << "[!] Error: Couldn't set the amount of withdraw." << endl;
+		return;
+	}
+
 	this->amount = amount;
 }

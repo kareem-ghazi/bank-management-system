@@ -103,7 +103,7 @@ void createUser()
 {
 	cout << "Enter your name: ";
 	string name;
-	// Clears garbage left over from the previous input operation (such as \n).
+	// Clears garbage left over from the previous int input operation (such as \n).
 	// This is necessary due to the behavior of inputting into an int before a string.
 	getline(cin >> ws, name);
 
@@ -215,6 +215,12 @@ void enterAccount()
 	int choice;
 	cin >> choice;
 
+	if (choice <= 0 || choice > i)
+	{
+		cout << "[!] Error: Invalid choice." << endl;
+		return;
+	}
+
 	account = accounts[choice - 1];
 	bankManager.clearInvoice();
 	accountsInterface();
@@ -236,6 +242,12 @@ void deleteAccount()
 {
 	vector<Account> accounts = bankManager.getAccountsOf(person);
 
+	if (accounts.size() == 1)
+	{
+		cout << "[!] Error: You can't delete your only bank account." << endl;
+		return;
+	}
+
 	int i = 0;
 	for (i = 0; i < accounts.size(); i++)
 	{
@@ -245,6 +257,12 @@ void deleteAccount()
 	cout << "Enter your choice: ";
 	int choice;
 	cin >> choice;
+
+	if (choice <= 0 || choice > i)
+	{
+		cout << "[!] Error: Invalid choice." << endl;
+		return;
+	}
 
 	bankManager.removeAccount(accounts[choice - 1]);
 }

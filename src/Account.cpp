@@ -49,7 +49,7 @@ double Account::getBalance() const {
 // Returns the status of the deposit (success or fail).
 bool Account::deposit(double amount)
 {
-	if (amount > 100) {
+	if (amount >= 100) {
 		balance += amount;
 		return true;
 	}
@@ -94,6 +94,16 @@ long long Account::generateAccountNumber()
 	for (int i = 0; i < 14; i++) {
 		randomNumber = randomNumber * 10 + (rand() % 10);
 	}
+
+	// 32412 = 2
+	// randomNumber * 10 + 2
+	// 330 + 2
+	// 332
+
+	// 48213 = 3
+	// randomNumber * 10 + 3
+	// 3320 + 3
+	// 33235924
 
 	return randomNumber;
 }

@@ -34,6 +34,12 @@ void Transfer::setAccountTo(Account accountTo)
 // Sets the amount to be transferred.
 void Transfer::setAmount(double amount)
 {
+	if (amount <= 0 || amount >= accountFrom.getBalance())
+	{
+		cout << "[!] Error: Couldn't set the amount of transfer." << endl;
+		return;
+	}
+
 	this->amount = amount;
 }
 

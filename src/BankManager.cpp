@@ -162,19 +162,20 @@ void BankManager::deposit(Account account, double amount)
 {
 	Account* originalAccount = database.getAccount(account.getAccountNumber());
 
-	Deposit deposit(*originalAccount);
-	deposit.setAmount(amount);
-	deposit.setDate(getDate());
-
 	bool status = originalAccount->deposit(amount);
 	
 	if (status)
 	{
-		cout << "[!] Deposit Successful. Current Balance: " << originalAccount->getBalance() << " L.E." << endl;
+		cout << "[!] Deposit Successful. Current Balance: " << fixed << setprecision(2) << originalAccount->getBalance() << " L.E." << endl;
+		
+		Deposit deposit(*originalAccount);
+		deposit.setAmount(amount);
+		deposit.setDate(getDate());
+		
 		invoice.addTransaction(deposit);
 	}
 	else {
-		cout << "[!] Error: Invalid Deposit Amount. You need at least 100 L.E. in order to deposit." << endl;
+		cout << "[!] Error: Invalid Deposit Amount." << endl;
 	}
 }
 
@@ -183,15 +184,16 @@ void BankManager::withdraw(Account account, double amount)
 {
 	Account* originalAccount = database.getAccount(account.getAccountNumber());
 
-	Withdraw withdraw(*originalAccount);
-	withdraw.setAmount(amount);
-	withdraw.setDate(getDate());
-
 	bool status = originalAccount->withdraw(amount);
 	
 	if (status)
 	{
-		cout << "[!] Withdrawal Successful. Current Balance: " << originalAccount->getBalance() << " L.E." << endl;
+		cout << "[!] Withdrawal Successful. Current Balance: " << fixed << setprecision(2) << originalAccount->getBalance() << " L.E." << endl;
+		
+		Withdraw withdraw(*originalAccount);
+		withdraw.setAmount(amount);
+		withdraw.setDate(getDate());
+
 		invoice.addTransaction(withdraw);
 	}
 	else {
@@ -218,14 +220,16 @@ void BankManager::transfer(Account accountFrom, Account accountTo, double amount
 		return;
 	}
 
-	Transfer transfer(accountFrom, accountTo);
-	transfer.setAmount(amount);
-	transfer.setDate(getDate());
-
 	bool status = originalAccountFrom->transfer(originalAccountTo, amount);
+
 	if (status)
 	{
-		cout << "[!] Transfer Successful. Current Balance: " << originalAccountFrom->getBalance() << " L.E." << endl;
+		cout << "[!] Transfer Successful. Current Balance: " << fixed << setprecision(2) << originalAccountFrom->getBalance() << " L.E." << endl;
+		
+		Transfer transfer(accountFrom, accountTo);
+		transfer.setAmount(amount);
+		transfer.setDate(getDate());
+
 		invoice.addTransaction(transfer);
 	}
 	else {
@@ -376,7 +380,7 @@ void BankManager::printForeignRates(int inputCurrency, double amount)
 		cout << "=====================================" << endl;
 		cout << "Your entered amount is: " << amount << " KWD" << endl;
 		cout << "=====================================" << endl;
-		cout << "EGP: " << amount * 151.97 << " L.E." << endl;
+		cout << "EGP: " << amount * 152.26 << " L.E." << endl;
 		cout << "EURO: " << amount * 3 << " EUR" << endl;
 		cout << "RIYAL: " << amount * 12.22 << " SAR" << endl;
 		cout << "POUND: " << amount * 2.57 << " GBP" << endl;

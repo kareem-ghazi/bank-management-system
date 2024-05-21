@@ -3,7 +3,7 @@
 // Initializes and reads data from the file.
 Database::Database()
 {
-	this->inputFile.open("data.txt", ios::in);
+	this->inputFile.open("data.txt");
 	
 	this->load();
 
@@ -13,7 +13,7 @@ Database::Database()
 // Destroys and saves data to the file.
 Database::~Database()
 {
-	this->outputFile.open("data.txt", ios::out);
+	this->outputFile.open("data.txt");
 
 	this->save();
 
@@ -143,9 +143,7 @@ void Database::load()
 		accountNumber = stoll(line.substr(0, comma));
 		line.erase(0, comma + 1);
 
-		comma = line.find(';');
-		balance = stod(line.substr(0, comma));
-		line.erase(0, comma + 1);
+		balance = stod(line.substr(0, line.size()));
 
 		Account account(person, accountNumber, balance);
 		accounts.push_back(account);

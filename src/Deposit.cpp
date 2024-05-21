@@ -21,5 +21,11 @@ void Deposit::setAccount(Account account)
 // Sets the amount that will be deposited.
 void Deposit::setAmount(double amount)
 {
+	if (amount < 100)
+	{
+		cout << "[!] Error: Couldn't set the amount of deposit." << endl;
+		return;
+	}
+
 	this->amount = amount;
 }
