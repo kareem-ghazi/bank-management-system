@@ -95,16 +95,6 @@ long long Account::generateAccountNumber()
 		randomNumber = randomNumber * 10 + (rand() % 10);
 	}
 
-	// 32412 = 2
-	// randomNumber * 10 + 2
-	// 330 + 2
-	// 332
-
-	// 48213 = 3
-	// randomNumber * 10 + 3
-	// 3320 + 3
-	// 33235924
-
 	return randomNumber;
 }
 
