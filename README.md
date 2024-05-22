@@ -16,7 +16,7 @@ Some of the features the system provides are:
 - Invoice listing all transactions in an account session.
 - Database system for saving all records offline.
 - Password encryption.
-
+- Prints the foreign rates for a specific currency and an amount.
 
 ## Screenshots & Diagrams
 
@@ -50,6 +50,10 @@ OR
 - [@Ser5io](https://github.com/Ser5io)
 - [@Dark72234](https://github.com/Dark72234)
 - [@AmrNaderII](https://github.com/AmrNaderII)
+- @Ahmed Satour
+- @Abdulrahman Mohammed
+- @Amr Moataz
+- @Mahmoud Ashraf
 
 ## License
 
