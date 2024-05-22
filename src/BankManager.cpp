@@ -409,7 +409,8 @@ string BankManager::getDate()
 	ctime_s(dateChar, 50, &now);
 
 	// Converting the character array into a string.
-	// NOTE: It seems like the ctime function adds a '\n' character at the end of the character array.
+	// NOTE: The ctime_s function adds a '\n' character at the end of the character array.
+	// Reference: https://learn.microsoft.com/en-us/cpp/c-runtime-library/reference/ctime-s-ctime32-s-ctime64-s-wctime-s-wctime32-s-wctime64-s?view=msvc-170#remarks
 	// The current workaround is to remove it from the end of the string.
 	string date(dateChar);
 	date[date.size() - 1] = ' ';
