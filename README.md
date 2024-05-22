@@ -42,7 +42,7 @@ Some of the features the system provides are:
 ```
 
 OR
-- Download the latest [release](https://github.com/kareem-ghazi/bank-management-system/releases/tag/v1.0) from the releases tab.
+- Download the latest [release](https://github.com/kareem-ghazi/bank-management-system/releases/tag/v1.3) from the releases tab.
     
 ## Authors
 
